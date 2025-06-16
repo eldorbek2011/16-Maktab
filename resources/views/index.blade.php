@@ -34,7 +34,7 @@
             <!-- Service List Start -->
             <div class="mainServicesList">
                 <!-- Birinchi blok -->
-                <a href="#">
+                <a href="{{ route('education') }}">
                     <div class="icon">
                         <img alt="icon" src="image/oquvchi.png" width="45%" style="margin-left: 60px;">
                     </div>
@@ -132,16 +132,17 @@
                    @if(isset($posts) && count($posts))
     <div class="row mb-4">
         @foreach($posts as $post)
-            <div class="col-lg-4 col-md-6">
-                <a href="#">
-                    <div class="imageBox">
-                        <img alt="image" src="admin/images/{{ $post->image }}" width="170px">
-                    </div>
-                    <h1>{{ \Illuminate\Support\Str::limit($post['body_' . app()->getLocale()], 100) }}</h1>
-                    <span class="news__date">{{ $post->created_at->format('H:i') }} / {{ $post->created_at->format('d.m.Y') }}</span>
-                </a>
+    <div class="col-lg-4 col-md-6">
+        <a href="{{ route('newsDetail', $post->id)}}">
+            <div class="imageBox">
+                <img alt="image" src="admin/images/{{ $post->image }}" width="170px">
             </div>
-        @endforeach
+            <h1>{{ \Illuminate\Support\Str::limit($post['body_' . app()->getLocale()], 100) }}</h1>
+            <span class="news__date">{{ $post->created_at->format('H:i') }} / {{ $post->created_at->format('d.m.Y') }}</span>
+        </a>
+    </div>
+@endforeach
+
     </div>
 @else
     <p>Yangiliklar mavjud emas.</p>
@@ -243,12 +244,12 @@
                                     <h1>{{ __('message.Ozbekistona Davlat Maktab 1') }}</h1>
                                 </div>
                             </a>
-                           
-                            
-                           
-                            
-                            
-                    
+
+
+
+
+
+
                 </div>
 
             </div>

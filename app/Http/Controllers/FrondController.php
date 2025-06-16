@@ -48,12 +48,16 @@ class FrondController extends Controller
 
 public function index()
 {
-    $schedule = Schudeli::all();
+
+
+    $categories = Category::all();
     $statictik = Statictik::all();
     $posts = Post::all();
     $HomePageImageTag = HomePageImageTag::all();  // shu qator juda muhim
+    $schedule = Schudeli::with('smena')->get();
 
-    return view('index', compact('statictik', 'posts', 'HomePageImageTag','schedule'));
+
+    return view('index', compact('statictik', 'posts', 'HomePageImageTag','schedule','categories'));
 }
    public function schoolTack(Request $request)
 {
@@ -96,16 +100,16 @@ public function index()
 
 
     public function leaderShep() {
-        $categories = Category::all();
-        $categoryTop = CategoryTopp::all();
+
         $teachers = Employee::with(['position', 'category'])
             ->whereHas('category', function ($query) {
                 $query->where('name_uz', 'Rahbariyat');
             })
             ->get();
 
-        return view('frond.leaderShep', compact('teachers','categoryTop','categories'));
+        return view('frond.leaderShep', compact('teachers'));
     }
+
 
 
 
@@ -147,15 +151,27 @@ public function index()
     }
 
 
-public function educationByCategory($categoryId)
+public function educationByCategory($slug)
 {
-    // Kategoriyaga tegishli ma'lumotlarni olish
-    $educations = Schudeli::where('category_id', $categoryId)->get();
+    $category = empCategory::where('slug', $slug)->firstOrFail();
 
-    $smenaType = SmenaType::all();
+    $teachers = Employee::where('emp_category_id', $category->id)->get();
 
-    return view('frond.education', compact('educations', 'smenaType'));
+    return view('frontend.pages.education_by_category', compact('category', 'teachers'));
 }
+
+public function schoolNews(){
+        $posts = Post::latest()->take(3)->get();
+        return view('frond.schoolNews',compact('posts'));
+    }
+    public function newsDetail($id){
+    $post = Post::findOrFail($id); // bu yerda bitta post olinadi
+    return view('frond.newsDetail', compact('post'));
+}
+
+
+
+
 
 
 
@@ -214,11 +230,7 @@ public function educationDetail($id)
 
         return view('frond.usefulResurs', compact('usefulresource'));
     }
-    public function schoolNews() {
 
-        $posts = Post::all();
-        return view('frond.schoolNews',compact('posts'));
-    }
     public function gallery() {
 
         $gallery = Gallery::all();
@@ -229,10 +241,10 @@ public function educationDetail($id)
         $infografika = Infografika::all();
         return view('frond.infoGrafika',compact('infografika'));
     }
-    public function UseFulResourseDetail($id) {
-   $resource = UsefulResource::findOrFail($id);
-
-    return view('frond.UseFulResoursDetail', compact('resource'));
+public function usefulResourceDetail($id)
+{
+    $resource = UsefulResource::where('id', $id)->firstOrFail();
+    return view('frond.usefulresoursedetail', compact('resource'));
 }
 
     public function connect() {

@@ -38,49 +38,44 @@
                 <div class="topMainMenu">
                     <a href="/" class="topMain-logo">
                         <img src="image/Gerb.png" alt="Logo" width="8%">
-                        @if(App::getLocale() == 'uz')
+                        @if (App::getLocale() == 'uz')
                             <p>27-sonli umumta'lim maktabi</p>
                         @elseif(App::getLocale() == 'ru')
                             <p>27-я общеобразовательная школа</p>
                         @endif
                     </a>
                     <ul>
-                        @foreach($categoryTop as $categorytop)
+                        @foreach ($categoryTop as $categorytop)
                             <li>
-                                <a href="https://vacancy.argos.uz/">{{$categorytop['name_' . App::getLocale()]}}</a>
+                                <a href="https://vacancy.argos.uz/">{{ $categorytop['name_' . App::getLocale()] }}</a>
                             </li>
                         @endforeach
                     </ul>
                     <!-- Search form: kategoriya bo'yicha qidirish uchun -->
                     <div class="additionalFuntions">
 
-                   <!-- Masalan: searchBtn tugmasidan pastroqqa joylashtiring -->
-<form action="{{ route('search.posts') }}" method="GET" class="d-flex align-items-center gap-2" role="search">
-    <div class="input-group" style="max-width: 400px;">
-        <span class="input-group-text bg-white">
-            <i class="fas fa-eye text-primary"></i>
-        </span>
-        <input
-            type="text"
-            name="query"
-            value="{{ request('query') }}"
-            class="form-control"
-            placeholder="Postlarni qidirish..."
-            aria-label="Search"
-        >
-    </div>
-    <button type="submit" class="btn btn-primary d-flex align-items-center">
-        <i class="fas fa-search me-1"></i> Qidirish
-    </button>
-</form>
+                        <!-- Masalan: searchBtn tugmasidan pastroqqa joylashtiring -->
+                        <form action="{{ route('search.posts') }}" method="GET"
+                            class="d-flex align-items-center gap-2" role="search">
+                            <div class="input-group" style="max-width: 400px;">
+                                <span class="input-group-text bg-white">
+                                    <i class="fas fa-eye text-primary"></i>
+                                </span>
+                                <input type="text" name="query" value="{{ request('query') }}" class="form-control"
+                                    aria-label="Search">
+                            </div>
+                            <button type="submit" class="btn btn-primary d-flex align-items-center">
+                                <i class="fas fa-search me-1"></i> {{ __('message.Qidirish') }}
+                            </button>
+                        </form>
 
 
 
 
-<!-- Qidiruv formasi (dastlab yashiringan) -->
+                        <!-- Qidiruv formasi (dastlab yashiringan) -->
 
 
-                </div>
+                    </div>
 
                 </div>
                 <div class="container">
@@ -95,33 +90,31 @@
                                         <img src="image/Gerb.png" alt="Logo" width="13%">
                                     </div>
                                     <div class="listMenu">
-    <ul>
-        @foreach($categories as $category)
-            <li>
-                <a href="{{ route('schooltack', ['category' => $category->id]) }}">
-                    {{ $category['name_' . app()->getLocale()] }}
-                </a>
+                                        <ul>
+                                            <li><a href="{{ route('schooltack') }}">Maktab haqida</a>
+                                                <ul>
+                                                    <li><a href="{{ route('schooltack') }}">{{ __('message.message.about_school') }}</a></li>
+                                                    <li><a href="{{ route('leaderShep') }}">{{ __('message.Mudir') }}</a></li>
+                                                    <li><a href="{{ route('teachers') }}">{{ __('message.Oqituvchilar') }}</a></li>
+                                                    <li><a href="{{ route('rekvizit') }}">{{ __('message.Rekvizitlar') }}</a></li>
+                                                </ul>
+                                            <li><a href="{{ route('education') }}">{{ __("message.Ta'lim") }}</a>
+                                                <ul>
+                                                    <li><a href="{{ route('education') }}">{{ __('message.1smena') }}</a></li>
 
-                @if($category->children && $category->children->count() > 0)
-                    <ul>
-                        @foreach($category->children as $child)
-                            <li>
-                                <a href="{{ route('schooltack', ['category' => $child->id]) }}">
-                                    {{ $child['name_' . app()->getLocale()] }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
-            </li>
-        @endforeach
-    </ul>
-
-    <ul class="simple">
-        <li><a href="{{ route('usefulresurs') }}">{{ __('message.Foydali resurslar') }}</a></li>
-        <li><a href="{{ route('connect') }}">{{ __("message.Bog'lanish") }}</a></li>
-    </ul>
-</div>
+                                                </ul>
+                                            <li class="overlay_li-social"><a href="{{ route('schoolNews') }}">{{ __('message.Axborot markazi') }}</a>
+                                                <ul>
+                                                    <li><a href="{{ route('schoolNews') }}">{{ __('message.Axborot markazi') }}</a></li>
+                                                    <li><a href="{{ route('Gallery') }}">{{ __('message.Galeriya') }}</a></li>
+                                                    <li><a href="{{ route('infoGrafika') }}">{{ __('message.Infografika') }}</a></li>
+                                                </ul>
+                                        </ul>
+                                        <ul class="simple">
+                                            <li><a href="{{ route('usefulresurs') }}">{{ __('message.Boglanish') }}</a></li>
+                                            <li><a href="{{ route('connect') }}">{{ __('message.Boglanish') }}</a></li>
+                                        </ul>
+                                    </div>
 
                                 </div>
                             </div>
@@ -130,28 +123,66 @@
                             <div class="menuList">
                                 <div class="menuLine"></div>
                                 <div class="bottomMainMenu">
-                                    <ul class="menu">
-                                        @foreach($categories as $category)
-                                            <li>
-                                                <a href="#">{{ $category['name_'.app()->getLocale()] }}</a>
-                                                @if($category->children->count())
-                                                    <ul>
-                                                        @foreach($category->children as $child)
-                                                            <li>
-                                                                <a href="{{ $child->url ?? '#' }}">
-                                                                    {{ $child['name_'.app()->getLocale()] }}
-                                                                </a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                @endif
-                                            </li>
-                                        @endforeach
+                                      <ul class="menu">
+                                        <li>
+                                           <a href="{{ route('schooltack') }}">{{ __('message.about_school') }}</a>
+
+                                            <ul class="menu_ul-li">
+                                                <li>
+                                                    <a href="{{ route('schooltack') }}">{{ __('message.about_school') }}</a>
+                                                </li>
+                                                <hr>
+                                                <li>
+                                                    <a href="{{ route('leaderShep') }}">{{ __('message.Mudir') }}</a>
+                                                </li>
+                                                <hr>
+                                                <li>
+                                                    <a href="{{ route('teachers') }}">{{ __('message.Oqituvchilar') }}</a>
+                                                </li>
+                                                <hr>
+                                                <li>
+                                                    <a href="{{ route('rekvizit') }}">{{ __('message.Rekvizitlar') }}</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('education') }}">{{ __("message.Ta'lim") }} </a>
+                                            <ul class="menu_ul-li">
+                                                <li>
+                                                    <a href="{{ route('education') }}">{{ __("message.1smena") }}</a>
+                                                </li>
+                                                <hr>
+
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('usefulresurs') }}">{{ __("message.useful_resources") }} </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('schoolNews') }}">{{ __('message.Axborot markazi') }} </a>
+                                            <ul class="menu_ul-li">
+                                                <li>
+                                                    <a href="{{ route('schoolNews') }}">{{ __('message.Maktab yangiliklari') }}</a>
+                                                </li>
+                                                <hr>
+                                                <li>
+                                                    <a href="{{ route('Gallery') }}">{{ __('message.Galeriya') }}</a>
+                                                </li>
+                                                <hr>
+                                                <li>
+                                                    <a href="{{ route('infoGrafika') }}">{{ __('message.Infografika') }}</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('connect') }}">{{ __('message.Boglanish') }} </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <form class="mainSearchForm" action="search.html" method="get">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Izlash" name="ContentSearch">
+                                        <input type="text" class="form-control" placeholder="Izlash"
+                                            name="ContentSearch">
                                         <div class="input-group-prepend">
                                             <button class="btn __searchBtn closeBtn" type="button">
                                                 <i class="fas fa-times"></i>
@@ -160,7 +191,7 @@
                                     </div>
                                 </form>
                                 <div class="dropdown langBar">
-                                    @if(session('lang') == 'uz')
+                                    @if (session('lang') == 'uz')
                                         <span>O'z</span>
                                         <a href="{{ url('/lang/ru') }}">Русский</a>
                                     @else
@@ -175,8 +206,10 @@
             </div>
         </div>
     </header>
+    <main>
+        @yield('content')
+    </main>
 
-    @yield('content')
 
     <!-- Footer Start -->
     <footer>
@@ -191,20 +224,24 @@
                     </ul>
                 </div>
                 <div class="footer_contact-left">
-                    <a href="https://instagram.com/_behruz__14_o1"><i class="fab fa-instagram"></i> <span>{{ __('message.27-maktab') }}</span></a>
-                    <a href="https://mail.google.com/behruzjalolov13@gmail.com"><i class="fas fa-envelope"></i> <span>{{ __('message.27-maktab') }}.com</span></a>
+                    <a href="https://instagram.com/_behruz__14_o1"><i class="fab fa-instagram"></i>
+                        <span>{{ __('message.27-maktab') }}</span></a>
+                    <a href="https://mail.google.com/behruzjalolov13@gmail.com"><i class="fas fa-envelope"></i>
+                        <span>{{ __('message.27-maktab') }}.com</span></a>
                 </div>
                 <div class="footer_contact-right">
-                    <a href="https://facebook.com/Behruz"><i class="fab fa-facebook-f"></i> <span>{{ __('message.27-maktab') }}</span></a>
-                    <a href="https://telegram.org/JalolovB"><i class="fab fa-telegram-plane"></i> <span>{{ __('message.27-maktab') }}   </span></a>
+                    <a href="https://facebook.com/Behruz"><i class="fab fa-facebook-f"></i>
+                        <span>{{ __('message.27-maktab') }}</span></a>
+                    <a href="https://telegram.org/JalolovB"><i class="fab fa-telegram-plane"></i>
+                        <span>{{ __('message.27-maktab') }} </span></a>
                 </div>
                 <div class="footer_logo">
                     <span><img src="./image/Gerb.png" alt="Logo" width="20%"></span>
-                     @if(App::getLocale() == 'uz')
-                             <a href="">27-sonli Umumta'lim maktabi <i>Sirdaryo, Guliston tumani</i></a>
-                        @elseif(App::getLocale() == 'ru')
-                             <a href="">Средняя школа № 27 <i>Сырдарья, Гулистанский район</i></a>
-                        @endif
+                    @if (App::getLocale() == 'uz')
+                        <a href="">27-sonli Umumta'lim maktabi <i>Sirdaryo, Guliston tumani</i></a>
+                    @elseif(App::getLocale() == 'ru')
+                        <a href="">Средняя школа № 27 <i>Сырдарья, Гулистанский район</i></a>
+                    @endif
 
                 </div>
                 <a href="#" class="it_live-logo">

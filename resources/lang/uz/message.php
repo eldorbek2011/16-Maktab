@@ -14,7 +14,7 @@ return [
     'Yuborish' => 'Yuborish',
     '27mak' => '27-sonli Umum Talim Maktab',
     'Biz bilan Boglaning' => 'Bizbilan Boglaning',
-    'Mudir' => 'директор',
+    'Mudir' => 'Direktor',
     'Telefon' => 'Telefon',
     'Faks' => 'Faks',
     'instagram' => 'instagram',
@@ -80,7 +80,15 @@ return [
     'Rasmlari' => 'Rasmlari',
     'Smena Turi'=> 'Smena Turi',
     'Orqaga' => 'Orqaga',
-    
+    'Qidirish' => 'Qidirish',
+    'Maktab Directori' => 'Maktab Directori',
+    'Rahbariyat batafsil' => 'Rahbariyat batafsil',
+    "Axborot markazi" => 'Axborot markazi',
+    'Maktab yangiliklari' => 'Maktab yangiliklari',
+    'Galeriya' => 'Galeriya',
+    'Boglanish' => 'Boglanish',
+    "E'lonlar" => "E'lonlar",
+
 
 
 ];

@@ -81,7 +81,15 @@ return [
       'Rasmlari' => 'Фотографии',
       'Smena Turi' => 'смены',
       'Orqaga' => 'Назад',
-      
+      'Qidirish' => 'Поиск',
+      'Maktab Directori' => 'Директор школы',
+      'Rahbariyat batafsil' => 'Управление в деталях',
+      "Axborot markazi"=>"Информационный центр",
+      'Maktab yangiliklari' => 'Новости школы',
+      'Galeriya' => 'Галерея',
+      'Boglanish' => 'Связь',
+      "E'lonlar" => "Объявления",
+
 
 ];
 

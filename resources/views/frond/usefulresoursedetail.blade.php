@@ -6,6 +6,7 @@
             <div class="container">
                 <div class="pageView">
                     <div class="projectView">
+                        
 
                         <img src="{{ asset('admin/images/' . $resource->image) }}" alt="{{ $resource['title_'. \App::getLocale()] }}">
 
