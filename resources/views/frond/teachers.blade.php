@@ -73,7 +73,7 @@
             text-decoration: underline;
         }
     </style>
-    
+
     <div class="mainContent withImage">
                 <div class="imageHeader" style="padding-bottom: 0px;">
                     <div class="container">
@@ -86,7 +86,7 @@
                         </nav>
                     </div>
                 </div>
-                
+
             </div>
 
     <main>
@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="description">
                                     <h2>{{ $teacher['name_'.\App::getLocale()] }}</h2>
-                                    <p>Lavozimi: {{ $teacher->position['name_'.\App::getLocale()] ?? 'Belgilanmagan' }}</p>
+                                    <p>Lavozimi: {{ $teacher->position['name_'.\App::getLocale()] ?? 'Belgilanmagan' }}</p> 
                                     <p>Telefon: <a href="tel:{{ $teacher->phone }}">{{ $teacher->phone }}</a></p>
                                     <p>Email: <a href="mailto:{{ $teacher->email }}">{{ $teacher->email }}</a></p>
                                 </div>

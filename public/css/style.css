@@ -12,7 +12,11 @@ a {
 ul li {
     list-style: none;
 }
-
+.maktab_tashkillanishi{
+    display: inline-flex;
+    grid-template-columns: repeat(3, 1fr);
+    gap: -100px;
+}
 /* BannerBox */
 .bannerBox {
     /* background-color: #2a3fcc; */

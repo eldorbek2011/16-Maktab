@@ -71,10 +71,10 @@
                                     <td>{{ $employe->phone }}</td>
                                     <td>{{ $employe->work_time }}</td>
                                     <td class="d-flex justify-content-center align-items-center">
-                                        <form action="{{ route('admin.employee.destroy', $employe->id) }}" method = "POST" >
+                                        <form action="{{ route('admin.employee.destroy', $employe->id) }}" method="POST" onsubmit="return confirm('Rostan ham o‘chirmoqchimisiz?');" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button class = 'btn btn-danger'>Delete</button>
+                                            <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                         <a class="btn btn-success" href="{{ route('admin.employee.show',$employe->id) }}">Ko‘rish</a>
                                         <a class="btn btn-primary" href="{{ route('admin.employee.edit',$employe->id) }}">O`zgartirish</a>

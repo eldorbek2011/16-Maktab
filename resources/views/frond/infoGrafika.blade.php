@@ -18,19 +18,19 @@
         <div class="infografika">
             <div class="container">
                 <div class="infografika_content">
-                    @foreach($infografika as $info) @endforeach
+                    @foreach($infografika as $info)
                     <div class="item">
-                        <a href="admin/images/{{$info->image}}">
+                        <a href="{{ asset('admin/images/' . $info->image) }}">
                             <div class="imageBox">
-                                <img src="admin/images/{{$info->image}}">
+                                <img src="{{ asset('admin/images/' . $info->image) }}">
                             </div>
                             <div class="descriptionBox">
-                                <h1>{{$info->title_uz}}</h1>
-                                <span class="news__date basic-flex">{{ $info->created_at->format('H:i') }}/ {{ $info->created_at->format('d.m.Y') }}</span>
+                                <h1>{{ $info->title_uz }}</h1>
+                                <span class="news__date basic-flex">{{ $info->created_at->format('H:i') }} / {{ $info->created_at->format('d.m.Y') }}</span>
                             </div>
                         </a>
                     </div>
-
+                    @endforeach
                 </div>
             </div>
         </div>

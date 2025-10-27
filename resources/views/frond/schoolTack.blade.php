@@ -33,7 +33,32 @@
                 </div>
             </div>
         </div>
+        <div class="container">
+            <h1 class="greenTitle center">Maktab Tarixi</h1>
+            <p class="text-center"><i>Maktabda Bo'lgan Raxbarlar Xaqida Ma'lumotlar</i> <br></p>
 
+            <ul class="tasksListWithTicks">
+                <li>Sirdaryo viloyati, sirdaryo tumanidagi 16-umumtalim maktabi 1932-yilda tel’mon nomidagi 19-sonli 7 yillik maktab  tashkil topgan.
+                    1937-Yildan To’liqsiz O’rta Maktab Sifatida O’zbek, Tojik, Rus Tillarida  Faoliyat Yuritgan.
+                </li>
+                <li>Shu kunga qadar Bo’lgan Raxbarlar: <br>
+                    1)	Ilk bor Z.X.Isoxarov Direktor Bo’lgan <br>
+                    2)	A.M.Nektalov Direktor Bo’lgan <br>
+                    3)	R.Ro’ziboev <br>
+                    4)	O.Shodiev <br>
+                    5)	P.Momedov <br>
+                    6)	E.Eshonqulov <br>
+                    7)	B.Muxammadiev <br>
+                    8)	Sh.Berdiev <br>
+                    9)	S.Suyunovlar raxbarlik qilib kelgan <br>
+                    Xozirgi kunda I.B.Bekbutaev Raxbarlik qilib kelmoqda.
+                </li>
+{{--                <li>{{ __("message.Card3") }}</li>--}}
+{{--                <li>{{ __("message.Card4") }}</li>--}}
+{{--                <li>{{ __("message.Card5") }}</li>--}}
+{{--                <li>{{ __("message.Card6") }}</li>--}}
+            </ul>
+        </div>
         <div class="container">
             <h1 class="greenTitle center">{{ __("message.Funksiya") }}</h1>
             <p class="text-center"><i>{{ __("message.Xalq Talim") }} </i> <br></p>

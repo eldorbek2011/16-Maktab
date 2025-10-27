@@ -33,91 +33,91 @@
             <li class="menu-item">
               <a href="{{ route('admin.category.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div class="text-truncate" data-i18n="Layouts">Category</div>
+                <div class="text-truncate" data-i18n="Layouts">Kategoriyalar</div>
               </a>
                 </li>
                 <li class="menu-item">
               <a href="{{route('admin.employee.index')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div class="text-truncate" data-i18n="Layouts">Employee</div>
+                <div class="text-truncate" data-i18n="Layouts">Xodimlar</div>
               </a>
                 </li>
               <li class="menu-item">
                   <a href="{{route('admin.position.index')}}" class="menu-link">
                       <i class="menu-icon tf-icons bx bx-layout"></i>
-                      <div class="text-truncate" data-i18n="Layouts">Position</div>
+                      <div class="text-truncate" data-i18n="Layouts">Lavozimlar</div>
                   </a>
               </li>
               <li class="menu-item">
                   <a href="{{route('admin.empCategory.index')}}" class="menu-link">
                       <i class="menu-icon tf-icons bx bx-layout"></i>
-                      <div class="text-truncate" data-i18n="Layouts">empCategory</div>
+                      <div class="text-truncate" data-i18n="Layouts">Xodim Kategoriyalari</div>
                   </a>
               </li>
               <li class="menu-item">
                   <a href="{{route('admin.CategoryTop.index')}}" class="menu-link">
                       <i class="menu-icon tf-icons bx bx-layout"></i>
-                      <div class="text-truncate" data-i18n="Layouts">CategoryTop</div>
+                      <div class="text-truncate" data-i18n="Layouts">Yuqori Kategoriyalar</div>
                   </a>
               </li>
               <li class="menu-item">
                   <a href="{{route('admin.posts.index')}}" class="menu-link">
                       <i class="menu-icon tf-icons bx bx-layout"></i>
-                      <div class="text-truncate" data-i18n="Layouts">Posts</div>
+                      <div class="text-truncate" data-i18n="Layouts">Maqolalar</div>
                   </a>
               </li>
               <li class="menu-item">
                   <a href="{{route('admin.statictik.index')}}" class="menu-link">
                       <i class="menu-icon tf-icons bx bx-layout"></i>
-                      <div class="text-truncate" data-i18n="Layouts">Statictik</div>
+                      <div class="text-truncate" data-i18n="Layouts">Statistika</div>
                   </a>
               </li>
               <li class="menu-item">
                   <a href="{{route('admin.gallery.index')}}" class="menu-link">
                       <i class="menu-icon tf-icons bx bx-layout"></i>
-                      <div class="text-truncate" data-i18n="Layouts">Gallery</div>
+                      <div class="text-truncate" data-i18n="Layouts">Galeriya</div>
                   </a>
               </li>
               <li class="menu-item">
                   <a href="{{route('admin.infografika.index')}}" class="menu-link">
                       <i class="menu-icon tf-icons bx bx-layout"></i>
-                      <div class="text-truncate" data-i18n="Layouts">InfoGrafika</div>
+                      <div class="text-truncate" data-i18n="Layouts">Infografika</div>
                   </a>
               </li>
               <li class="menu-item">
                   <a href="{{route('admin.smenatype.index')}}" class="menu-link">
                       <i class="menu-icon tf-icons bx bx-layout"></i>
-                      <div class="text-truncate" data-i18n="Layouts">SmenaType</div>
+                      <div class="text-truncate" data-i18n="Layouts">Smena Turlari</div>
                   </a>
               </li>
               <li class="menu-item">
                   <a href="{{route('admin.schedule.index')}}" class="menu-link">
                       <i class="menu-icon tf-icons bx bx-layout"></i>
-                      <div class="text-truncate" data-i18n="Layouts">Schudeli</div>
+                      <div class="text-truncate" data-i18n="Layouts">Dars Jadvali</div>
                   </a>
               </li>
               <li class="menu-item">
                   <a href="{{route('admin.lesson.index')}}" class="menu-link">
                       <i class="menu-icon tf-icons bx bx-layout"></i>
-                      <div class="text-truncate" data-i18n="Layouts">Lesson</div>
+                      <div class="text-truncate" data-i18n="Layouts">Darslar</div>
                   </a>
               </li>
               <li class="menu-item">
                   <a href="{{route('admin.usefulResource.index')}}" class="menu-link">
                       <i class="menu-icon tf-icons bx bx-layout"></i>
-                      <div class="text-truncate" data-i18n="Layouts">UseFullResource</div>
+                      <div class="text-truncate" data-i18n="Layouts">Foydali Resurslar</div>
                   </a>
               </li>
               <li class="menu-item">
                   <a href="{{route('admin.categorychildren.index')}}" class="menu-link">
                       <i class="menu-icon tf-icons bx bx-layout"></i>
-                      <div class="text-truncate" data-i18n="Layouts">CategoryChildren</div>
+                      <div class="text-truncate" data-i18n="Layouts">Bolalar Kategoriyalari</div>
                   </a>
               </li>
                <li class="menu-item">
                   <a href="{{route('admin.HomePageImageTag.index')}}" class="menu-link">
                       <i class="menu-icon tf-icons bx bx-layout"></i>
-                      <div class="text-truncate" data-i18n="Layouts">HomePageImageTag</div>
+                      <div class="text-truncate" data-i18n="Layouts">Bosh Sahifa Rasmlari</div>
                   </a>
               </li>
                 

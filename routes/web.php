@@ -49,7 +49,6 @@ Route::get('/', [FrondController::class, 'index'])->name('index');
 Route::get('/teachers/search', [EmployeeController::class, 'search'])->name('teachers.search');
 Route::get('/education/search', [FrondController::class, 'educationSearch'])->name('education.search');
 Route::get('education/connect', [FrondController::class, 'connect'])->name('education.connect');
-// web.php
 
 
 

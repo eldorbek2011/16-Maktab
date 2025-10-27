@@ -39,9 +39,9 @@
                     <a href="/" class="topMain-logo">
                         <img src="image/Gerb.png" alt="Logo" width="8%">
                         @if (App::getLocale() == 'uz')
-                            <p>27-sonli umumta'lim maktabi</p>
+                            <p>16-sonli umumta'lim maktabi</p>
                         @elseif(App::getLocale() == 'ru')
-                            <p>27-я общеобразовательная школа</p>
+                            <p>16-я общеобразовательная школа</p>
                         @endif
                     </a>
                     <ul>
@@ -215,32 +215,21 @@
     <footer>
         <div class="footer">
             <div class="container">
-                <div class="row">
-                    <ul class="footer_menu">
-                        <li><a href="https://vacancy.argos.uz/">{{ __('message.BoshIshOrinlari') }}</a></li>
-                        <li><a href="schoolRules.html">{{ __('message.Maktab qonun qoidalari') }}</a></li>
-                        <li><a href="FAQ.html">{{ __('message.Tez-tez beriladigan savollar') }}</a></li>
-                        <li><a href="stateSymbols.html">{{ __('message.Davlat ramzlari') }}</a></li>
-                    </ul>
-                </div>
                 <div class="footer_contact-left">
-                    <a href="https://instagram.com/_behruz__14_o1"><i class="fab fa-instagram"></i>
-                        <span>{{ __('message.27-maktab') }}</span></a>
-                    <a href="https://mail.google.com/behruzjalolov13@gmail.com"><i class="fas fa-envelope"></i>
-                        <span>{{ __('message.27-maktab') }}.com</span></a>
+                    <a href="https://t.me/username_ikromjon"><i class="fab fa-telegram-plane"></i>
+                        <span>Ikromjon Bekbutaev</span></a>
                 </div>
                 <div class="footer_contact-right">
-                    <a href="https://facebook.com/Behruz"><i class="fab fa-facebook-f"></i>
-                        <span>{{ __('message.27-maktab') }}</span></a>
-                    <a href="https://telegram.org/JalolovB"><i class="fab fa-telegram-plane"></i>
-                        <span>{{ __('message.27-maktab') }} </span></a>
+                    <a href="https://www.facebook.com/share/17KBXebyJY/"><i class="fab fa-facebook-f"></i>
+                        <span>Ikromjon Bekbutaev</span></a>
+
                 </div>
                 <div class="footer_logo">
                     <span><img src="./image/Gerb.png" alt="Logo" width="20%"></span>
                     @if (App::getLocale() == 'uz')
-                        <a href="">27-sonli Umumta'lim maktabi <i>Sirdaryo, Guliston tumani</i></a>
+                        <a href="">16-sonli Umumta'lim maktabi <i>Sirdaryo, Sirdaryo tumani</i></a>
                     @elseif(App::getLocale() == 'ru')
-                        <a href="">Средняя школа № 27 <i>Сырдарья, Гулистанский район</i></a>
+                        <a href="">Средняя школа № 16 <i>Сырдарья, Сирдарйо район</i></a>
                     @endif
 
                 </div>

@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="bigBannerContent" style="background-image: url('image/329-maktab.jpg');">
+<div class="bigBannerContent" style="background-image: url('image/16-maktab.jpg');">
     <div class="bannerContent">
         <div class="container-fluid">
             <div class="row">
@@ -13,7 +13,8 @@
                                        @if(isset($HomePageImageTag))
     @foreach($HomePageImageTag as $homePage)
         <div class="quote text-center">
-            <h2>{!! __("message.school1") !!}</h2>
+            <h2>16-sonli umumta'lim maktabi
+                Sirdaryo, Sirdaryo Tumani</h2>
             <p>{{ $homePage['body_' . app()->getLocale()] }}</p>
             <span>Shavkat Mirziyoyev</span>
         </div>
@@ -157,10 +158,13 @@
             <div class="mapArea">
                 <div class="row">
                     <div class="col-lg-12 mt-4">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6131044.44664104!2d64.608575!3d41.381166!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b20750bb92946b%3A0x54012c9057e544c8!2s11-%20umumiy%20o%CA%BBrta%20ta%CA%BClim%20maktabi!5e0!3m2!1sru!2s!4v1694608189347!5m2!1sru!2s"
-                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2877.6312216222764!2d68.65971677583921!3d40.64254507140419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38adf1f01a72e16b%3A0xf961092c1883a3d5!2s16.maktab!5e1!3m2!1suz!2s!4v1761485704098!5m2!1suz!2s"
+                                width="100%"
+                                height="550"
+                                style="border:0;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
@@ -206,23 +210,15 @@
                                 <tbody>
                                 <tr>
                                     <th>{{ __('message.Mudir') }}:</th>
-                                    <td>Jalolv Behruz</td>
+                                    <td>Ikromjon Bekbuteav</td>
                                 </tr>
                                 <tr>
                                     <th>{{ __('message.Telefon') }}:</th>
-                                    <td>+99891-191-84-48</td>
-                                </tr>
-                                <tr>
-                                    <th>{{ __('message.Faks') }}:</th>
-                                    <td>+99891-191-84-48</td>
-                                </tr>
-                                <tr>
-                                    <th>{{ __('message.instagram') }}:</th>
-                                    <td>@27-maktab</td>
+                                    <td>+998-88-121-68-86</td>
                                 </tr>
                                 <tr>
                                     <th>{{ __('message.telegram') }}:</th>
-                                    <td>@27-maktab</td>
+                                    <td>Ikromjon Bekbutaev</td>
                                 </tr>
                                 </tbody>
                             </table>

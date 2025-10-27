@@ -100,14 +100,14 @@ public function index()
 
 
     public function leaderShep() {
-
         $teachers = Employee::with(['position', 'category'])
-            ->whereHas('category', function ($query) {
-                $query->where('name_uz', 'Rahbariyat');
+            ->whereHas('position', function ($query) {
+                $query->where('name_uz', 'Direktor')
+                    ->orWhere('name_ru', 'Директор');
             })
             ->get();
 
-        return view('frond.leaderShep', compact('teachers'));
+        return view('frond.LeaderShepDeatil', compact('teachers'));
     }
 
 
@@ -116,33 +116,55 @@ public function index()
 
 
 
-    public function teachers(Request $request) {
-    $query = $request->input('query');
+    public function teachers(Request $request)
+    {
+        $query = $request->input('query');
 
-    $teachersQuery = Employee::with(['position', 'category'])
-        ->whereHas('category', function ($q) {
-            $q->where('name_uz', '!=', 'Rahbariyat');
-        });
+        // variantlarni hisobga olamiz: apostrof/kovichka farqlari bo'lishi mumkin
+        $teacherNamesUz = [
+            "O'qituvchi",  // ascii apostrof
+            "O`qituvchi",  // backtick variant
+            "O‘qituvchi",  // unicode left single quote
+            "O’qituvchi",  // unicode right single quote
+            "Oqituvchi",   // ehtimol apostrofsiz
+            "Oʻqituvchi",  // boshqacha unicode
+        ];
 
-    if ($query) {
-        $teachersQuery->where(function ($q) use ($query) {
-            $q->where('name_uz', 'like', "%{$query}%")
-                ->orWhere('name_ru', 'like', "%{$query}%")
-                ->orWhereHas('category', function ($cat) use ($query) {
-                    $cat->where('name_uz', 'like', "%{$query}%")
-                        ->orWhere('name_ru', 'like', "%{$query}%");
+        $teachersQuery = Employee::with(['position', 'category'])
+            // kategoriya Rahbariyat bo'lmaganlarni olamiz (agar shu requirement bo'lsa)
+            ->whereHas('category', function ($q) {
+                $q->where('name_uz', '!=', 'Rahbariyat');
+            })
+            ->whereHas('position', function ($q) use ($teacherNamesUz) {
+                // har bir variant uchun yoki ruscha 'Учитель'
+                $q->where(function($qq) use ($teacherNamesUz) {
+                    foreach ($teacherNamesUz as $nameVariant) {
+                        $qq->orWhere('name_uz', $nameVariant);
+                    }
+                    $qq->orWhere('name_ru', 'Учитель')
+                        ->orWhere('name_ru', 'Учительница'); // agar turli formalar bo'lsa
                 });
-        });
+            });
+
+        if ($query) {
+            $teachersQuery->where(function ($q) use ($query) {
+                $q->where('name_uz', 'like', "%{$query}%")
+                    ->orWhere('name_ru', 'like', "%{$query}%")
+                    ->orWhereHas('category', function ($cat) use ($query) {
+                        $cat->where('name_uz', 'like', "%{$query}%")
+                            ->orWhere('name_ru', 'like', "%{$query}%");
+                    });
+            });
+        }
+
+        $teachers = $teachersQuery->get()
+            ->groupBy(fn($item) => $item->category ? $item->category['name_'. \App::getLocale()] : 'Boshqa toifa');
+
+        $categories = Category::all();
+        $categoryTop = CategoryTopp::all();
+
+        return view('frond.teachers', compact('teachers', 'categoryTop', 'categories', 'query'));
     }
-
-    $teachers = $teachersQuery->get()
-        ->groupBy(fn($item) => $item->category ? $item->category['name_'. \App::getLocale()] : 'Boshqa toifa');
-
-    $categories = Category::all();
-    $categoryTop = CategoryTopp::all();
-
-    return view('frond.teachers', compact('teachers', 'categoryTop', 'categories', 'query'));
-}
 
 
     public function rekvizit() {

@@ -15,8 +15,8 @@
                     </div>
                 </div>
             </div>
-          
-    
+
+
     <!-- Header End -->
 
     <!-- Main section Start -->
@@ -56,11 +56,11 @@
                             </div>
 
 
-
+ 
                             <div class="collapseBox">
                                 <a data-toggle="collapse" href="#collapseExample" role="button">{{ __('message.Biografiya') }}</a>
 
-                               
+
                             </div>
                         </div>
                     </div>
