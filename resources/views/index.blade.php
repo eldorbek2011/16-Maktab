@@ -230,27 +230,172 @@
             <hr class="sections__line mt-5">
 
             <!-- Useful Links Start -->
-            <div class="usefulLinks">
-                <div class="container">
-                <h1 class="mb-5">{{ __('message.Foydali resurslar') }}</h1>
-                <div class="slider">
-                      <a href="#">
-                                <div class="slider_content">
-                                    <img src="image/gerb_slider.jpg" width="10%" alt="Image 1">
-                                    <h1>{{ __('message.Ozbekistona Davlat Maktab 1') }}</h1>
-                                </div>
-                            </a>
+            <div class="usefulLinks container my-5">
+                <h1 class="title text-center mb-5">Foydali resurslar</h1>
+
+                <div class="slider-wrapper">
+                    <div class="slider-track">
+                        <a href="https://president.uz" target="_blank" class="link-item">
+                            <img src="http://127.0.0.1:8000/image/Gerb.png" alt="Grerb">
+                            <span>message.Prezident sayt</span>
+                        </a>
+
+                        <a href="https://pm.gov.uz" target="_blank" class="link-item">
+                            <img src="http://127.0.0.1:8000/image/prenzident.png" alt="Prenzident">
+                            <span>Prezidentning virtual qabulxonasi</span>
+                        </a>
+
+                        <a href="http://gov.uz" target="_blank" class="link-item">
+                            <img src="http://127.0.0.1:8000/image/Oliy majlis.jpg" alt="majlis">
+                            <span>O'zbekiston Respublikasi hukumat portali</span>
+                        </a>
+
+                        <a href="https://my.gov.uz/uz/spheres/9" target="_blank" class="link-item">
+                            <img src="http://127.0.0.1:8000/image/img.png" alt="davlat">
+                            <span>Yagona interaktiv davlat xizmatlari portali</span>
+                        </a>
+
+                        <a href="http://kitob.uz" target="_blank" class="link-item">
+                            <img src="http://127.0.0.1:8000/image/kutubxona.jpg" alt="kitob">
+                            <span>Respublika bolalar kutubxonasi</span>
+                        </a>
+
+                        <a href="https://data.egov.uz/" target="_blank" class="link-item">
+                            <img src="http://127.0.0.1:8000/image/ochiq.png" alt="data">
+                            <span>O'zbekiston Respublikasi ochiq ma'lumot portali</span>
+                        </a>
 
 
+                        <a href="https://constitution.uz" target="_blank" class="link-item">
+                            <img src="http://127.0.0.1:8000/image/mygovUz.jpg" alt="data">
+                            <span>message.Konstitutsiya portali</span>
+                        </a>
 
+                        <a href="https://president.uz" target="_blank" class="link-item">
+                            <img src="http://127.0.0.1:8000/image/Gerb.png" alt="Grerb">
+                            <span>message.Prezident sayt</span>
+                        </a>
 
+                        <a href="https://pm.gov.uz" target="_blank" class="link-item">
+                            <img src="http://127.0.0.1:8000/image/prenzident.png" alt="Prenzident">
+                            <span>Prezidentning virtual qabulxonasi</span>
+                        </a>
 
+                        <a href="http://gov.uz" target="_blank" class="link-item">
+                            <img src="http://127.0.0.1:8000/image/Oliy majlis.jpg" alt="majlis">
+                            <span>O'zbekiston Respublikasi hukumat portali</span>
+                        </a>
 
+                        <a href="https://my.gov.uz/uz/spheres/9" target="_blank" class="link-item">
+                            <img src="http://127.0.0.1:8000/image/img.png" alt="davlat">
+                            <span>Yagona interaktiv davlat xizmatlari portali</span>
+                        </a>
+
+                        <a href="http://kitob.uz" target="_blank" class="link-item">
+                            <img src="http://127.0.0.1:8000/image/kutubxona.jpg" alt="kitob">
+                            <span>Respublika bolalar kutubxonasi</span>
+                        </a>
+
+                        <a href="https://data.egov.uz/" target="_blank" class="link-item">
+                            <img src="http://127.0.0.1:8000/image/ochiq.png" alt="data">
+                            <span>O'zbekiston Respublikasi ochiq ma'lumot portali</span>
+                        </a>
+                        <a href="https://constitution.uz" target="_blank" class="link-item">
+                            <img src="http://127.0.0.1:8000/image/mygovUz.jpg" alt="data">
+                            <span>message.Konstitutsiya portali</span>
+                        </a>
+                    </div>
                 </div>
-
             </div>
-            <!-- Useful Links End -->
+            <style>
+                .usefulLinks {
+                    text-align: center;
+                }
 
+                .usefulLinks .title {
+                    font-weight: 700;
+                    font-size: 2rem;
+                    color: #1e3a8a;
+                }
+
+                .slider-wrapper {
+                    overflow: hidden;
+                    width: 100%;
+                    position: relative;
+                }
+
+                .slider-track {
+                    display: flex;
+                    gap: 30px;
+                    animation: slide 40s linear infinite;
+                }
+
+                .link-item {
+                    background: #ffffff;
+                    border-radius: 20px;
+                    width: 210px;
+                    text-align: center;
+                    text-decoration: none;
+                    color: #333;
+                    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+                    transition: 0.3s ease;
+                    padding: 20px;
+                    flex-shrink: 0;
+                }
+
+                .link-item:hover {
+                    transform: translateY(-8px);
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                }
+
+                .link-item img {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin-bottom: 10px;
+                    border: 3px solid #1e3a8a;
+                }
+
+                .link-item span {
+                    display: block;
+                    font-size: 15px;
+                    font-weight: 600;
+                    color: #1e293b;
+                    line-height: 1.3;
+                }
+
+                @keyframes slide {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+
+                /* Responsive */
+                @media (max-width: 768px) {
+                    .link-item {
+                        width: 160px;
+                        padding: 15px;
+                    }
+
+                    .link-item img {
+                        width: 80px;
+                        height: 80px;
+                    }
+
+                    .slider-track {
+                        gap: 20px;
+                        animation: slide 15s linear infinite;
+                    }
+                }
+            </style>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const track = document.querySelector('.slider-track');
+                    // cheksiz harakat uchun kontentni ikki marta joylashtirish
+                    track.innerHTML += track.innerHTML;
+                });
+            </script>
         </div>
     </section>
 </main>

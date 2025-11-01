@@ -1,69 +1,48 @@
-
 @extends('layouts.adminLayout')
+@section('title', 'Admin - Useful Resource')
+
 @section('content')
+<div class="col-md-8 offset-md-2">
+    <form action="{{ route('admin.usefulResource.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
 
-    <div class="col-md-8 offset-md-2">
-        <form action="{{ route('admin.usefulResource.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+        <div class="card">
+            <h5 class="card-header">Create Useful Resource</h5>
+            <div class="card-body">
+                <a href="{{ route('admin.usefulResource.index') }}" class="btn btn-success btn-sm mb-3">Back</a>
 
-            <div class="card">
-                <h5 class="card-header">Create Category</h5>
-                <div class="card-body">
-                    <a href="{{ route('admin.usefulResource.index') }}" class="btn btn-success">Back</a>
+                @php
+                    $fields = [
+                        ['name'=>'title_uz','label'=>'Title (uz)'],
+                        ['name'=>'title_ru','label'=>'Title (ru)'],
+                        ['name'=>'body_uz','label'=>'Body (uz)'],
+                        ['name'=>'body_ru','label'=>'Body (ru)'],
+                        ['name'=>'url','label'=>'URL','type'=>'url'],
+                        ['name'=>'image','label'=>'Image','type'=>'file']
+                    ];
+                @endphp
 
-                    <div class="mb-4">
-                        <label for="title_uz" class="form-label">Title (uz)</label>
-                        <input type="text" class="form-control @error('title_uz') is-invalid @enderror" id="title_uz" placeholder="title..." name="title_uz" value="{{ old('title_uz') }}">
-                        @error('title_uz')
-                        <div class="invalid-feedback" style="color: red;">
-                            {{ $message }}
-                        </div>
+                @foreach($fields as $field)
+                    <div class="mb-3">
+                        <label for="{{ $field['name'] }}" class="form-label">{{ $field['label'] }}</label>
+                        <input 
+                            type="{{ $field['type'] ?? 'text' }}" 
+                            class="form-control @error($field['name']) is-invalid @enderror" 
+                            id="{{ $field['name'] }}" 
+                            name="{{ $field['name'] }}" 
+                            placeholder="{{ $field['label'] }}..." 
+                            value="{{ old($field['name']) }}"
+                            @if(isset($field['type']) && $field['type']=='file') value="" @endif
+                        >
+                        @error($field['name'])
+                            <div class="invalid-feedback" style="color: red;">{{ $message }}</div>
                         @enderror
                     </div>
+                @endforeach
 
-                    <div class="mb-4">
-                        <label for="title_ru" class="form-label">Title (ru)</label>
-                        <input type="text" class="form-control @error('title_ru') is-invalid @enderror" id="title_ru" placeholder="title..." name="title_ru" value="{{ old('title_ru') }}">
-                        @error('title_ru')
-                        <div class="invalid-feedback" style="color: red;">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label for="body_uz" class="form-label">Body (uz)</label>
-                        <input type="text" class="form-control @error('body_uz') is-invalid @enderror" id="body_uz" placeholder="body..." name="body_uz" value="{{ old('body_uz') }}">
-                        @error('body_uz')
-                        <div class="invalid-feedback" style="color: red;">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label for="image" class="form-label">Images</label>
-                        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" placeholder="image..." name="image" value="{{ old('image') }}">
-                        @error('image')
-                        <div class="invalid-feedback" style="color: red;">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label for="body_ru" class="form-label">Body (ru)</label>
-                        <input type="text" class="form-control @error('body_ru') is-invalid @enderror" id="body_ru" placeholder="body..." name="body_ru" value="{{ old('body_ru') }}">
-                        @error('body_ru')
-                        <div class="invalid-feedback" style="color: red;">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="submit">Save</button>
-                    </div>
-                </div>
+                <button class="btn btn-primary" type="submit">Save</button>
             </div>
-        </form>
-    </div>
-
+        </div>
+    </form>
+</div>
 @endsection

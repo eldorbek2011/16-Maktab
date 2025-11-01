@@ -49,7 +49,8 @@ class ChildrenCategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $category = Categorychildren::with('category')->findOrFail($id);
+        return view('admin.categorychildren.show', compact('category'));
     }
 
     /**

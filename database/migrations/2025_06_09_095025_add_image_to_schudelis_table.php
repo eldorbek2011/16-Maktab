@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('schudelis', function (Blueprint $table) {
-            $table->string('image');
-        });
+        if (!Schema::hasColumn('schudelis', 'image')) {
+            Schema::table('schudelis', function (Blueprint $table) {
+                $table->string('image');
+            });
+        }
     }
 
     /**
@@ -21,8 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('schudelis', function (Blueprint $table) {
-            //
-        });
+        if (Schema::hasColumn('schudelis', 'image')) {
+            Schema::table('schudelis', function (Blueprint $table) {
+                $table->dropColumn('image');
+            });
+        }
     }
 };

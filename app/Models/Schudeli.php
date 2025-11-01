@@ -14,11 +14,16 @@ class Schudeli extends Model
     public function lesson() {
         return $this->belongsTo(Lesson::class, 'lesson_id', 'id');
     }
-   // App\Models\Schudeli.php
-public function employee()
-{
-    return $this->belongsTo(Employee::class);
-}
+    
+    public function classModel() {
+        return $this->belongsTo(ClassModel::class, 'class_id', 'id');
+    }
+    
+    // App\Models\Schudeli.php
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
 
 
 

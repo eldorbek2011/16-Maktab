@@ -32,6 +32,7 @@ Route::get('/lang/{locale}', function ($locale) {
 
 Route::get('schooltack', [FrondController::class,'schoolTack'])->name('schooltack');
 Route::get('leadershep', [FrondController::class,'leaderShep'])->name('leaderShep');
+Route::get('/teachers/detail/{id}', [FrondController::class, 'teacherDetail'])->name('teacher.detail');
 Route::get('teachers', [FrondController::class,'teachers'])->name('teachers');
 Route::get('rekvizit', [FrondController::class,'rekvizit'])->name('rekvizit');
 Route::get('education', [FrondController::class,'education'])->name('education');
@@ -44,7 +45,7 @@ Route::get('Gallery', [FrondController::class,'Gallery'])->name('Gallery');
 Route::get('infoGrafika', [FrondController::class,'infoGrafika'])->name('infoGrafika');
 Route::get('connect', [FrondController::class,'connect'])->name('connect');
 Route::post('SendEmail', [FrondController::class,'SendEmail'])->name('SendEmail');
-Route::get('LeaderShepDatail', [FrondController::class,'LeaderShepDatail'])->name('LeaderShepDatail');
+Route::get('/leadershep/detail/{id}', [FrondController::class, 'leaderShepDetail'])->name('leaderShep.detail');
 Route::get('/', [FrondController::class, 'index'])->name('index');
 Route::get('/teachers/search', [EmployeeController::class, 'search'])->name('teachers.search');
 Route::get('/education/search', [FrondController::class, 'educationSearch'])->name('education.search');
@@ -73,8 +74,9 @@ Route::post('ckeditor/upload', [\App\Http\Controllers\CKEditorController::class,
 
 Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->middleware(['auth', 'verified'])->name('admin.dashboard');
+        return view('admin.dashboard'); // yoki admin.dashboard kontrolleri
+    })->middleware(['auth', 'verified'])->name('dashboard');
+
     Route::resource('category', CategoryController::class);
     Route::resource('employee', EmployeeController::class);
     Route::resource('position', PositionController::class);
@@ -85,29 +87,17 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::resource('gallery', GalleryController::class);
     Route::resource('infografika', infoGrafikaController::class);
     Route::resource('smenatype', \App\Http\Controllers\SmenaTypeController::class);
+    Route::resource('class', \App\Http\Controllers\ClassController::class);
     Route::resource('schedule', \App\Http\Controllers\SchudeliController::class);
-    Route::resource('lesson', \App\Http\Controllers\LessonController::class);
     Route::resource('usefulResource', \App\Http\Controllers\UserfulController::class);
     Route::resource('HomePageImageTag', \App\Http\Controllers\HomePageImageTagController::class);
-
-
-
     Route::resource('categorychildren', \App\Http\Controllers\ChildrenCategoryController::class);
 
-
-
-
-
-
-
-
 });
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 require __DIR__.'/auth.php';

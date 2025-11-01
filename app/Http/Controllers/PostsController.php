@@ -71,14 +71,29 @@ class PostsController extends Controller
 
     public function update(Request $request, Post $post)
     {
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required',
+        $requestData = $request->validate([
+            'title_uz' => 'required|string|max:255',
+            'title_ru' => 'required|string|max:255',
+            'body_uz' => 'required|string',
+            'body_ru' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $post->update($request->all());
+        if ($request->hasFile('image')) {
+            // Eski rasmini o'chirish
+            if ($post->image && file_exists(public_path('admin/images/' . $post->image))) {
+                unlink(public_path('admin/images/' . $post->image));
+            }
+            
+            $file = $request->file('image');
+            $imageName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('admin/images/'), $imageName);
+            $requestData['image'] = $imageName;
+        }
 
-        return redirect()->route('admin.posts.index')->with('success', 'Post updated successfully.');
+        $post->update($requestData);
+
+        return redirect()->route('admin.posts.index')->with('success', 'Maqola muvaffaqiyatli yangilandi!');
     }
 
     public function destroy(Post $post)

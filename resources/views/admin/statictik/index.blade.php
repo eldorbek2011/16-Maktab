@@ -1,84 +1,84 @@
-
-
 @extends('layouts.adminLayout')
-@section('title')
-    Admin - Statick
+@section('title', 'Admin - Statictik')
 
-@endsection
 @section('content')
+<div class="main-content">
+    <section class="section">
+        <div class="row">
+            <div class="col-md-12">
+                <style>
+                    .main-content {
+                        margin-left: 250px;
+                        padding: 20px;
+                    }
+                    .table td, .table th {
+                        padding: 0.6rem;
+                        vertical-align: middle;
+                        font-size: 0.95rem;
+                    }
+                    .btn-sm {
+                        padding: 0.35rem 0.6rem;
+                        font-size: 0.8rem;
+                    }
+                </style>
 
-    <div class="main-content">
-        <section class="section">
-            <div class="row">
-                <div class="col-md-12">
-                    <style>
-                        .main-content {
-                            margin-left: 250px; /* Sidebar kengligi bilan mos bo‘lishi kerak */
-                            padding: 20px;
-                        }
-                    </style>
-
-                    @if($statick->isEmpty())
-                        <a href="{{ route('admin.statictik.create') }}" class="btn btn-primary">Create</a>
-                    @endif
-
+                @if(session('success'))
+                    <div id="flash-message" class="alert alert-success py-1 px-2 mb-2">
+                        {{ session('success') }}
+                    </div>
                     <script>
-
-                        setTimeout(function() {
+                        setTimeout(() => {
                             var flash = document.getElementById('flash-message');
-                            if (flash) {
-                                flash.style.display = 'none';
-                            }
+                            if(flash) flash.style.display = 'none';
                         }, 3000);
                     </script>
+                @endif
 
+                @if($statick->isEmpty())
+                    <a href="{{ route('admin.statictik.create') }}" class="btn btn-primary mb-3">➕ Create Statictik</a>
+                @endif
 
-
-                    @empty($statick)
-                        <a href="{{ route('admin.statictik.create') }}" class="btn btn-primary">Create</a>
-                    @endif
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
+                <div class="card-body p-2">
+                    <table class="table table-hover table-sm mb-0">
+                        <thead class="table-light small">
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">SinflarSoni</th>
-                                <th scope="col">OquvchilarSoni</th>
-                                <th scope="col">OqituvchilarSoni</th>
-                                <th scope="col">Bituruvchilar</th>
-                                <th scope="col">Action</th>
-
+                                <th>#</th>
+                                <th>Sinflar Soni</th>
+                                <th>O‘quvchilar Soni</th>
+                                <th>O‘qituvchilar Soni</th>
+                                <th>Bitiruvchilar</th>
+                                <th>Action</th>
                             </tr>
-                            </thead>
-                            <tbody>
+                        </thead>
+                        <tbody>
                             @foreach($statick as $stat)
                                 <tr>
-                                    <th scope="row">{{ $stat->id }}</th>
+                                    <td>{{ $stat->id }}</td>
                                     <td>{{ $stat->classesCount }}</td>
                                     <td>{{ $stat->studentsCount }}</td>
                                     <td>{{ $stat->teachersCount }}</td>
                                     <td>{{ $stat->graduatesCount }}</td>
-                                    <td class="d-flex justify-content-center align-items-center">
-                                        <form action="{{ route('admin.statictik.destroy', $stat->id) }}" method = "POST" >
+                                    <td class="d-flex gap-1">
+                                        <a href="{{ route('admin.statictik.show',$stat->id) }}" class="btn btn-success btn-sm">Show</a>
+                                        <a href="{{ route('admin.statictik.edit',$stat->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <form action="{{ route('admin.statictik.destroy',$stat->id) }}" method="POST" onsubmit="return confirm('O‘chirishni xohlaysizmi?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button class = 'btn btn-danger'>Delete</button>
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                         </form>
-                                        <a class="btn btn-success" href="{{route('admin.statictik.show',$stat->id)}}">Show</a>
-                                        <a class="btn btn-primary" href="{{route('admin.statictik.edit',$stat->id)}}">Edit</a>
                                     </td>
                                 </tr>
-
                             @endforeach
-
-
-                            </tbody>
-                        </table>
-                    </div>
+                            @if($statick->isEmpty())
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted">Hech qanday ma’lumot yo‘q</td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-        </section>
-    </div>
-
+        </div>
+    </section>
+</div>
 @endsection

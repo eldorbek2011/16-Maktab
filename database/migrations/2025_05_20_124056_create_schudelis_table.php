@@ -16,7 +16,8 @@ return new class extends Migration
             $table->integer('smena_id');
             $table->integer('lesson_id');
             $table->string('week_day');
-            $table->string('room');            $table->timestamps();
+            $table->string('room');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('schudelis', function (Blueprint $table) {
-            $table->integer('room')->change();
-        });
+        Schema::dropIfExists('schudelis');
     }
 };

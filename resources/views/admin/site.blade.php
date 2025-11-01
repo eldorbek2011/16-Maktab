@@ -151,6 +151,13 @@
                                                 <li>
                                                     <a href="{{ route('education') }}">{{ __("message.1smena") }}</a>
                                                 </li>
+                                                <li>
+                                                    <a href="{{ route('education') }}">{{ __("message.2smena") }}</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('education') }}">{{ __("message.togaraklar") }}</a>
+                                                </li>
+
                                                 <hr>
 
                                             </ul>
@@ -237,6 +244,8 @@
                     <img src="./image/It live logo for red-04-04.png" alt="IT_Live" class="it_live-img">
                 </a>
                 <span class="year_text">© {{ __('message.2025-2030 Barcha huquqlar himoyalangan') }}</span>
+                <span class="year_text">© {{ __('Yaratuvchi Xusraf Xusainov') }}</span>
+
             </div>
         </div>
     </footer>

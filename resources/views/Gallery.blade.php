@@ -1,384 +1,193 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('admin.site')
+@section('content')
 
-<head>
-    <!-- Basic -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Site Metas -->
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-
-    <title>Maktab Galeriyasi</title>
-
-    <!-- Bootstrap core css -->
-    <link rel="stylesheet" href="{{assert('front/css/bootstrap.css')}}">
-
-    <!-- Animate css -->
-    <link rel="stylesheet" href="{{assert('front./css/animate.css')}}">
-    <!-- Font awesome style -->
-    <link rel="stylesheet" href="{{assert('front/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-    <!-- Custom style for this template -->
-    <link rel="stylesheet" href="{{assert('front/css/style.css')}}">
-    <link rel="stylesheet" href="{{assert('front/css/responsive.css')}}">
-</head>
-<style>
-    @media (max-width:412px) {
-        .topMain-logo {
-            position: absolute;
-            top: 17%;
-            right: 35%;
-            color: black;
+    <style>
+        /* Umumiy konteyner – 3 ta ustun */
+        .galleryContainer {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .additionalFuntions {
-            position: absolute;
-            top: 24%;
-            right: 3%;
+        /* Har bir galereya kartasi */
+        .galleryCard {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
         }
-    }
-</style>
 
-<body>
-    <!-- Header Start -->
-    <header>
-        <div class="bannerBox">
-            <!-- Header Nav Start -->
-            <div class="headerBar">
-                <div class="topMainMenu">
-                    <a href="index.html" class="topMain-logo">
-                        <img src="image/Gerb.png" alt="" width="8%">
-                        <p>7-sonli umumta'lim maktabi </p>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="https://vacancy.argos.uz/">Bosh ish orinlari</a>
-                        </li>
-                        <li>
-                            <a href="schoolRules.html">Maktab qonun-qoidalar</a>
-                        </li>
-                        <li>
-                            <a href="FAQ.html">Tez-tez beriladigan savollar </a>
-                        </li>
-                        <li>
-                            <a href="stateSymbols.html">Davlat ramzlari</a>
-                        </li>
-                    </ul>
-                    <div class="additionalFuntions">
-                        <a href="#" class="eye"><i class="fa-regular fa-eye text-white me-2"></i></a>
-                        <a href="#" class="searchBtn text-white">|
-                            <i class="fa-solid fa-magnifying-glass text-white mb-3 ms-2"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="headerMenuBox">
-                        <div class="bigMenuBtn">
-                            <button type="button" class="borderedBtn">
-                                <div class="menuBars"></div>
-                            </button>
-                            <div class="overlay">
-                                <div class="container">
-                                    <div class="topLogoGerb">
-                                        <img src="image/Gerb.png" alt="Logo" width="13%">
-                                    </div>
-                                    <div class="listMenu">
-                                        <ul>
-                                            <li><a href="#">Maktab haqida</a>
-                                                <ul>
-                                                    <li><a href="schoolTasks.html">Maktab vazifalari</a></li>
-                                                    <li><a href="leaderShip.html">Rahbariyat</a></li>
-                                                    <li><a href="teachers.html">O'qituvchilar</a></li>
-                                                    <li><a href="rekvizit.html">Rekvizitlar</a></li>
-                                                </ul>
-                                            <li><a href="education.html">Ta'lim</a>
-                                                <ul>
-                                                    <li><a href="education.html">1-smena</a></li>
-                                                    <li><a href="education.html">2-smena</a></li>
-                                                    <li><a href="education.html">Qo'shimcha darslar </a></li>
-                                                    <li><a href="education.html">Sport to'garaklar</a></li>
-                                                </ul>
-                                            <li><a href="schoolNews.html">Axborot markazi</a>
-                                                <ul>
-                                                    <li><a href="schoolNews.html">Maktab yangiliklari</a></li>
-                                                    <li><a href="Gallery.html">Galeriya</a></li>
-                                                    <li><a href="infoGrafika.html">Infografika</a></li>
-                                                </ul>
-                                        </ul>
-                                        <ul class="simple">
-                                            <li><a href="usefulResurs.html">Foydali resurslar</a></li>
-                                            <li><a href="connect.html">Bogʻlanish</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="topMainMenu2">
-                                        <ul>
-                                            <li><a href="https://vacancy.argos.uz/">Bo'sh ish o‘rinlari</a></li>
-                                            <li><a href="schoolNews.html">Maktab qonun-qoidalari</a></li>
-                                            <li><a href="FAQ.html">Tez-tez beriladigan savollar</a></li>
-                                            <li><a href="stateSymbols.html">Davlat ramzlari</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+        .galleryCard:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+        }
 
-                            </div>
-                        </div>
-                        <div class="mainMenuBox">
-                            <div class="menuList">
+        .galleryCard img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-bottom: 4px solid #007BFF;
+        }
 
-                                <!--  -->
-                                <div class="menuLine"></div>
-                                <!--  -->
-                                <div class="bottomMainMenu">
-                                    <ul class="menu">
-                                        <li>
-                                            <a href="" class="">Maktab haqida</a>
-                                            <ul class="menu_ul-li">
-                                                <li>
-                                                    <a href="schoolTasks.html">Maktab vazifalari</a>
-                                                </li>
-                                                <hr>
-                                                <li>
-                                                    <a href="leaderShip.html">Rahbariyat</a>
-                                                </li>
-                                                <hr>
-                                                <li>
-                                                    <a href="teachers.html">O'qituvchilar</a>
-                                                </li>
-                                                <hr>
-                                                <li>
-                                                    <a href="rekvizit.html">Rekvizitlar</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="education.html">Ta'lim </a>
-                                            <ul class="menu_ul-li">
-                                                <li>
-                                                    <a href="education.html">1-smena</a>
-                                                </li>
-                                                <hr>
-                                                <li>
-                                                    <a href="education.html">2-smena</a>
-                                                </li>
-                                                <hr>
-                                                <li>
-                                                    <a href="education.html">Qo'shimcha darslar</a>
-                                                </li>
-                                                <hr>
-                                                <li>
-                                                    <a href="education.html">Sport to'garaklari</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="usefulResurs.html">Foydali resurslar </a>
-                                        </li>
-                                        <li>
-                                            <a href="schoolNews.html">Axborot markazi </a>
-                                            <ul class="menu_ul-li">
-                                                <li>
-                                                    <a href="schoolNews.html">Maktab yangiliklari</a>
-                                                </li>
-                                                <hr>
-                                                <li>
-                                                    <a href="Gallery.html">Galeriya</a>
-                                                </li>
-                                                <hr>
-                                                <li>
-                                                    <a href="infoGrafika.html">Infografika</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="connect.html">Boglanish </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- Search Start-->
-                                <form id="w2" class="mainSearchForm" action="" method="get">
-                                    <div class="input-group">
-                                        <input type="text" id="mainSearch" class="form-control" placeholder="Izlash"
-                                            name="ContentSearch">
+        /* Pastki qism – matn */
+        .cardContent {
+            padding: 18px 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #003399;
+            color: white;
+        }
 
-                                        <div class="input-group-prepend">
-                                            <button class="btn __searchBtn closeBtn" type="button">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </div>
+        .cardContent h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 0 8px;
+            line-height: 1.4;
+            color: #fff;
+        }
 
-                                </form>
-                                <!-- Search End-->
+        .cardContent .date {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
 
-                                <div class="dropdown langBar">
-                                    <button class="borderedBtn" type="button" data-toggle="dropdown">O'z</button>
-                                    <div id="" class="dropdown-menu-right dropdown-menu">
-                                        <a class="dropdown-item " href="/Uz">O'zbekcha</a>
-                                        <a class="dropdown-item" href="/Ўзб">Ўзбекча</a>
-                                        <a class="dropdown-item" href="/Ru">Русский</a>
-                                        <a class="dropdown-item" href="/En">English</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        /* "Foto" yozuvi – yashil */
+        .fotoLabel {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #00C853;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0, 200, 83, 0.3);
+            z-index: 2;
+        }
+
+        /* Raqam – ko‘k */
+        .numberBadge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #007BFF;
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            box-shadow: 0 3px 8px rgba(0, 123, 255, 0.3);
+            z-index: 2;
+        }
+
+        /* Sarlavha */
+        .gallery_title {
+            text-align: center;
+            font-size: 34px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0 0 30px;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+        }
+
+        .gallery_title::after {
+            content: '';
+            display: block;
+            width: 90px;
+            height: 4px;
+            background: #007BFF;
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Responsiv */
+        @media (max-width: 992px) {
+            .galleryContainer {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .galleryContainer {
+                grid-template-columns: 1fr;
+                padding: 30px 15px;
+                gap: 25px;
+            }
+            .galleryCard img {
+                height: 220px;
+            }
+            .numberBadge, .fotoLabel {
+                width: 38px;
+                height: 38px;
+                font-size: 16px;
+            }
+            .fotoLabel {
+                padding: 5px 12px;
+                font-size: 13px;
+            }
+        }
+    </style>
+
+    <!-- Header -->
+    <div class="mainContent withImage">
+        <div class="imageHeader" style="padding-bottom: 0px;">
+            <div class="container">
+                <h1 class="pageTitle text-dark">{{ __("message.Maktab Galereyasi") }}</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('index') }}">{{__('message.home')}}</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ __("message.Maktab Galereyasi") }}</li>
+                    </ol>
+                </nav>
             </div>
-            <!-- Header Nav End -->
-
-            <!-- Image Header Start-->
-            <div class="mainContent withImage">
-                <div class="imageHeader" style="padding-bottom: 0px;">
-                    <div class="container">
-                        <h1 class="pageTitle text-dark">Maktab Galereyasi</h1>
-                        <nav aria-label="breadcrumb">
-                            <ol id="w5" class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Asosiy</a></li>
-                                <li class="breadcrumb-item " aria-current="page">Maktab Galereyasi</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <!-- Image Header End -->
-
         </div>
-    </header>
-    <!-- Header End -->
+    </div>
 
-    <!-- Main section Start -->
+    <!-- Main Content -->
     <main>
         <section>
-            <div class="schoolGallery">
-                <div class="container">
-                    <h1 class="gallery_title">Maktab Galereyasi</h1>
-                    <div class="row">
-                        <div class="col-12 mb-2">
-                            <img src="/image/329-maktab.jpg" alt="Img" width="100%" height="90%">
+            <div class="container">
+                <h1 class="gallery_title">{{ __('message.Maktab Galereyasi') }}</h1>
+
+
+                <div class="galleryContainer">
+                    @foreach($gallery as $galler)
+                        @php
+                            $number = $loop->iteration;
+                        @endphp
+
+                        <div class="galleryCard">
+                            <div class="numberBadge">{{ $number }}</div>
+                            <div class="fotoLabel">{{ __('message.Foto') }}</div>
+
+                            <img src="{{ asset('admin/images/' . $galler->image) }}" alt="{{ $galler->title_uz }}">
+
+                            <div class="cardContent">
+                                <h3>{{ $galler->title_uz }}</h3>
+                                <div class="date">
+                                    {{ \Carbon\Carbon::parse($galler->created_at)->format('d M Y') }}
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12 mb-2">
-                            <img src="/image/ImgChidlrens.jpg" alt="Img" width="100%" height="90%">
-                        </div>
-                        <div class="col-12 mb-2">
-                            <img src="/image/img_zoom.jpg" alt="Img" width="100%" height="90%">
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
     </main>
-    <!-- Main section End -->
 
-    <!-- Footer Start  -->
-    <footer>
-        <div class="footer mt-5">
-            <div class="container">
-                <div class="row">
-                    <ul class="footer_menu">
-                        <li>
-                            <a href="">Bo'sh ish o'rinlari</a>
-                        </li>
-                        <li>
-                            <a href="">Maktab qonun qoidalari</a>
-                        </li>
-                        <li>
-                            <a href="">Tez-tez beriladigan savollar</a>
-                        </li>
-                        <li>
-                            <a href="">Davlat ramzlari</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="footer_contact-left">
-                    <a href="#">
-                        <i class="fab fa-instagram"></i>
-                        <span>@329_maktab</span>
-                    </a>
-                    <a href="#">
-                        <i class="fas fa-envelope"></i>
-                        <span>info@maktab.uz</span>
-                    </a>
-                </div>
-                <div class="footer_contact-right">
-                    <a href="#">
-                        <i class="fab fa-facebook-f"></i>
-                        <span>@7_maktab</span>
-                    </a>
-                    <a href="#">
-                        <i class="fab fa-telegram-plane"></i>
-                        <span>@7_maktab</span>
-                    </a>
-                </div>
-                <div class="footer_logo">
-                    <span>
-                        <img src="./image/Gerb.png" alt="Logo" width="20%">
-                    </span>
-                    <a href="">
-                        7-sonli Umumta'lim maktabi
-                        <i>Sirdaryo, Guliston tumani</i>
-                    </a>
-                </div>
-
-
-                <a href="#" class="it_live-logo">
-                    <img src="./image/It live logo for red-04-04.png" alt="IT_Live" width="10%">
-                </a>
-                <span class="year_text">
-                    © 2020-2023 Barcha huquqlar himoyalangan
-                </span>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer End -->
-
-</body>
-
-
-
-<!-- Js -->
-<script src="{{ assert('front/js/bootstrap.js')}}"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{{ assert('front//js/tilt.jquery.js')}}"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="{{ assert('front//js/wow.min.js')}}"></script>
-
-<!-- Js -->
-<script>
-    $(document).ready(function () {
-        $(".searchBtn").click(function (e) {
-            e.preventDefault();
-            $(".mainSearchForm").toggleClass("active");
-        });
-
-        $(".closeBtn").click(function (e) {
-            e.preventDefault();
-            $(".mainSearchForm").removeClass("active");
-        });
-
-        const bigMenuBtn = document.querySelector('.bigMenuBtn');
-        const overlay = document.querySelector('.overlay');
-
-        bigMenuBtn.addEventListener('click', function () {
-            this.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.classList.toggle('no-scroll');
-        });
-
-
-        $('.js-tilt').tilt({
-            scale: 1.2
-        })
-
-    });
-
-</script>
-
-
-
-</html>
+@endsection

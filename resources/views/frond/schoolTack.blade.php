@@ -39,9 +39,13 @@
 
             <ul class="tasksListWithTicks">
                 <li>Sirdaryo viloyati, sirdaryo tumanidagi 16-umumtalim maktabi 1932-yilda tel’mon nomidagi 19-sonli 7 yillik maktab  tashkil topgan.
-                    1937-Yildan To’liqsiz O’rta Maktab Sifatida O’zbek, Tojik, Rus Tillarida  Faoliyat Yuritgan.
+                    1937-Yildan To’liqsiz O’rta Maktab Sifatida O’zbek, Tojik, Rus Tillarida  Faoliyat Yuritgan. <br>
+                    <br>
+                    1952-1953-Yillardan Maktab S.M.Kirov nomli 16-sonli 11 yillik umumiy o'rta ta'lim maktabiga aylabtirilgan.
+                    <br><br>
+                    Mustaqillik davrida maktabning nomi O.SHodiev nomli 16-sonli maktab nomiga o'zgartirildi
                 </li>
-                <li>Shu kunga qadar Bo’lgan Raxbarlar: <br>
+                <li>Maktab tashkil topgan vaqtdan shu kunga qadar raxbar bo'lganlar: <br>
                     1)	Ilk bor Z.X.Isoxarov Direktor Bo’lgan <br>
                     2)	A.M.Nektalov Direktor Bo’lgan <br>
                     3)	R.Ro’ziboev <br>
@@ -52,6 +56,14 @@
                     8)	Sh.Berdiev <br>
                     9)	S.Suyunovlar raxbarlik qilib kelgan <br>
                     Xozirgi kunda I.B.Bekbutaev Raxbarlik qilib kelmoqda.
+                </li>
+                <li>
+                    Maktabning xozirgi kunda 5 ta binosi bo'lib <br>
+                    Birinchi o'quv binosi: 1968-yilda qurilgan <br>
+                    Ikkinchi o'quv binosi: 1983-yilda qurilgan <br>
+                    Uchinchi o'quv binosi: 2005-yilda qurilgan <br>
+                    To'rtinchi Sport zali: 2005-yilda qurilgan <br>
+                    Maktab filiali binosi: 2018-yilda qurilgan <br>
                 </li>
 {{--                <li>{{ __("message.Card3") }}</li>--}}
 {{--                <li>{{ __("message.Card4") }}</li>--}}

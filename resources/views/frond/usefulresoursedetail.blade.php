@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="pageView">
                     <div class="projectView">
-                        
+
 
                         <img src="{{ asset('admin/images/' . $resource->image) }}" alt="{{ $resource['title_'. \App::getLocale()] }}">
 
@@ -19,7 +19,7 @@
                                 <tbody>
                                     <tr>
                                         <th>Veb-sayt</th>
-                                        <td><a href="https://attestat.uzedu.uz/" target="_blank">https://attestat.uzedu.uz/</a></td>
+                                        <td><a href="{{ $resource->url }}" target="_blank">{{ $resource->url }}</a></td>
                                     </tr>
                                     <tr>
                                         <th>Qo'shimcha ma'lumot</th>

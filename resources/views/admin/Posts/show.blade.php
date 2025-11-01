@@ -1,45 +1,47 @@
-
-
-
 @extends('layouts.adminLayout')
+@section('title', 'Admin - Show Post')
+
 @section('content')
+<div class="container mt-4" style="max-width: 700px;">
+    <div class="card shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">📄 Post tafsilotlari</h5>
+            <a href="{{ route('admin.posts.index') }}" class="btn btn-sm btn-success">Orqaga</a>
+        </div>
 
-
-
-    <div class="col-md-8 offset-md-2">
-        <form action="{{ route('admin.posts.store') }}" method="POST">
-            @csrf
-
-            <div class="card">
-                <h5 class="card-header">show Posts</h5>
-                <div class="card-body">
-                    <a href="{{ route('admin.posts.index') }}" class="btn btn-success">Back</a>
-
-                    <div class="mb-4">
-                        <label for="title_uz" class="form-label">Title (uz)</label>
-                        <input type="string" class="form-control" id="title_uz" placeholder="title..." name = "title_uz" value = "{{$post->title_uz}}">
-                    </div>
-                    <div class="mb-4">
-                        <label for="title_ru" class="form-label">Title (ru)</label>
-                        <input type="string" class="form-control" id="title_ru" placeholder="title..." name = "title_ru" value = "{{$post->title_ru}}">
-                    </div>
-                    <div class="mb-4">
-                        <label for="body_uz" class="form-label">Body (uz)</label>
-                        <input type="string" class="form-control" id="body_uz" placeholder="body..." name = "body_uz" value = "{{$post->body_uz}}">
-                    </div>
-                    <div class="mb-4">
-                        <label for="body_ru" class="form-label">Body (ru)</label>
-                        <input type="string" class="form-control" id="body_ru" placeholder="body_ru..." name = "body_ru" value = "{{$post->body_ru}}">
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Image</label><br>
-                        <img src="{{ asset('admin/images/' . $post->image) }}" alt="Posts Image" style="width: 150px; height: auto; border-radius: 8px;">
-                    </div>
-
-                </div>
+        <div class="card-body">
+            {{-- Title (UZ) --}}
+            <div class="mb-3">
+                <label class="form-label fw-bold">Title (UZ)</label>
+                <input type="text" class="form-control" value="{{ $post->title_uz }}" readonly>
             </div>
-        </form>
+
+            {{-- Title (RU) --}}
+            <div class="mb-3">
+                <label class="form-label fw-bold">Title (RU)</label>
+                <input type="text" class="form-control" value="{{ $post->title_ru }}" readonly>
+            </div>
+
+            {{-- Body (UZ) --}}
+            <div class="mb-3">
+                <label class="form-label fw-bold">Body (UZ)</label>
+                <textarea class="form-control" rows="3" readonly>{{ $post->body_uz }}</textarea>
+            </div>
+
+            {{-- Body (RU) --}}
+            <div class="mb-3">
+                <label class="form-label fw-bold">Body (RU)</label>
+                <textarea class="form-control" rows="3" readonly>{{ $post->body_ru }}</textarea>
+            </div>
+
+            {{-- Image --}}
+            @if($post->image)
+            <div class="mb-3 text-center">
+                <label class="form-label fw-bold">Rasm</label><br>
+                <img src="{{ asset('admin/images/' . $post->image) }}" alt="Post Image" style="max-width: 100%; border-radius: 6px;">
+            </div>
+            @endif
+        </div>
     </div>
-
-
+</div>
 @endsection

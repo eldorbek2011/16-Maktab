@@ -1,32 +1,23 @@
-
-
 @extends('layouts.adminLayout')
+@section('title', 'Show SmenaType')
+
 @section('content')
+<div class="col-md-8 offset-md-2">
+    <div class="card">
+        <h5 class="card-header">Show SmenaType</h5>
+        <div class="card-body">
+            <a href="{{ route('admin.smenatype.index') }}" class="btn btn-success mb-3">Back</a>
 
-
-
-    <div class="col-md-8 offset-md-2">
-        <form action="{{ route('admin.smenatype.store') }}" method="POST">
-            @csrf
-
-            <div class="card">
-                <h5 class="card-header">show empCategory</h5>
-                <div class="card-body">
-                    <a href="{{ route('admin.smenatype.index') }}" class="btn btn-success">Back</a>
-
-                    <div class="mb-4">
-                        <label for="name_uz" class="form-label">Name (uz)</label>
-                        <input type="string" class="form-control" id="name_uz" placeholder="name..." name = "name_uz" value = "{{$smenatype->name_uz}}">
-                    </div>
-                    <div class="mb-4">
-                        <label for="name_ru" class="form-label">Name (ru)</label>
-                        <input type="string" class="form-control" id="name_ru" placeholder="name..." name = "name_ru" value = "{{$smenatype->name_ru}}">
-                    </div>
-
-                </div>
+            <div class="mb-3">
+                <label class="form-label fw-bold">Name (UZ)</label>
+                <p class="form-control-plaintext">{{ $smenatype->name_uz }}</p>
             </div>
-        </form>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Name (RU)</label>
+                <p class="form-control-plaintext">{{ $smenatype->name_ru }}</p>
+            </div>
+        </div>
     </div>
-
-
+</div>
 @endsection

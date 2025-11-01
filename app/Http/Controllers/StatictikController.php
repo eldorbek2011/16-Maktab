@@ -44,7 +44,8 @@ class StatictikController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $statick = Statictik::findOrFail($id);
+        return view('admin.statictik.show', compact('statick'));
     }
 
     /**
@@ -52,7 +53,8 @@ class StatictikController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $statick = Statictik::findOrFail($id);
+        return view('admin.statictik.edit', compact('statick'));
     }
 
     /**
@@ -60,7 +62,17 @@ class StatictikController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $valiData = $request->validate([
+            'classesCount' => 'required|integer',
+            'studentsCount' => 'required|integer',
+            'teachersCount' => 'required|integer',
+            'graduatesCount' => 'required|integer',
+        ]);
+
+        $statick = Statictik::findOrFail($id);
+        $statick->update($valiData);
+
+        return redirect()->route('admin.statictik.index')->with('success', 'Statistika muvaffaqiyatli yangilandi!');
     }
 
     /**

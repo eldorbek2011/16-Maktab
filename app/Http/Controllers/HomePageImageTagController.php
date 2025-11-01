@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use \App\Models\HomePageImageTag;
+use App\Models\HomePageImageTag;
 
 class HomePageImageTagController extends Controller
 {
@@ -13,8 +12,8 @@ class HomePageImageTagController extends Controller
      */
     public function index()
     {
-        $HomePageImageTag = HomePageImageTag::all();
-        return view('admin.HomePageImageTag.index',compact('HomePageImageTag'));
+        $homePageImageTags = HomePageImageTag::all();
+        return view('admin.HomePageImageTag.index', compact('homePageImageTags'));
     }
 
     /**
@@ -22,7 +21,6 @@ class HomePageImageTagController extends Controller
      */
     public function create()
     {
-        
         return view('admin.HomePageImageTag.create');
     }
 
@@ -31,15 +29,18 @@ class HomePageImageTagController extends Controller
      */
     public function store(Request $request)
     {
-        $requestData = $request->validate([
-            'title_uz' => 'required',
-            'title_ru' => 'required',
-            'body_uz' => 'required',
-            'body_ru' => 'required',
-
+        $validatedData = $request->validate([
+            'title_uz' => 'required|string|max:255',
+            'title_ru' => 'required|string|max:255',
+            'body_uz' => 'required|string',
+            'body_ru' => 'required|string',
         ]);
-        HomePageImageTag::create($requestData);
-        return redirect()->route('admin.HomePageImageTag.index');
+
+        HomePageImageTag::create($validatedData);
+
+        return redirect()
+            ->route('admin.HomePageImageTag.index')
+            ->with('success', 'Maʼlumot muvaffaqiyatli qoʻshildi!');
     }
 
     /**
@@ -47,7 +48,8 @@ class HomePageImageTagController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $homePageImageTag = HomePageImageTag::findOrFail($id);
+        return view('admin.HomePageImageTag.show', compact('homePageImageTag'));
     }
 
     /**
@@ -55,7 +57,8 @@ class HomePageImageTagController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $homePageImageTag = HomePageImageTag::findOrFail($id);
+        return view('admin.HomePageImageTag.edit', compact('homePageImageTag'));
     }
 
     /**
@@ -63,7 +66,19 @@ class HomePageImageTagController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'title_uz' => 'required|string|max:255',
+            'title_ru' => 'required|string|max:255',
+            'body_uz' => 'required|string',
+            'body_ru' => 'required|string',
+        ]);
+
+        $homePageImageTag = HomePageImageTag::findOrFail($id);
+        $homePageImageTag->update($validatedData);
+
+        return redirect()
+            ->route('admin.HomePageImageTag.index')
+            ->with('success', 'Maʼlumot yangilandi!');
     }
 
     /**
@@ -71,7 +86,11 @@ class HomePageImageTagController extends Controller
      */
     public function destroy(string $id)
     {
-        HomePageImageTag::destroy($id);
-        return redirect()->route('admin.HomePageImageTag.index');
+        $item = HomePageImageTag::findOrFail($id);
+        $item->delete();
+
+        return redirect()
+            ->route('admin.HomePageImageTag.index')
+            ->with('success', 'Maʼlumot o‘chirildi!');
     }
 }

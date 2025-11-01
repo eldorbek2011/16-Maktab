@@ -21,7 +21,7 @@
                 <div class="row">
                     @foreach($gallery as $galler)
                     <div class="col-6">
-                        <img src="admin/images/{{$galler->image}}" alt="Img" width="500px" height="300px">
+                        <img src="admin/images/{{$galler->image}}" alt="Img" width="500px" height="300px" style="border: none; box-shadow: 0 12px 12px 0 rgb(0, 0, 0, 0.5)">
                         <h4>
                             {{ $galler->title_uz }}
 

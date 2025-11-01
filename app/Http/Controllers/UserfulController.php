@@ -34,6 +34,7 @@ class UserfulController extends Controller
             'title_ru' => 'required|string|max:255',
             'body_uz'  => 'required|string',
             'body_ru'  => 'required|string',
+            'url' => 'required|url',
         ]);
 
         if ($request->hasFile('image')) {
@@ -53,7 +54,8 @@ class UserfulController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $usefulResource = UsefulResource::findOrFail($id);
+        return view('admin.usefulResource.show', compact('usefulResource'));
     }
 
     /**
@@ -61,7 +63,8 @@ class UserfulController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $usefulResource = UsefulResource::findOrFail($id);
+        return view('admin.usefulResource.edit', compact('usefulResource'));
     }
 
     /**
@@ -69,7 +72,30 @@ class UserfulController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $requestData = $request->validate([
+            'title_uz' => 'required|string|max:255',
+            'title_ru' => 'required|string|max:255',
+            'body_uz'  => 'required|string',
+            'body_ru'  => 'required|string',
+            'url' => 'required|url',
+        ]);
+
+        $usefulResource = UsefulResource::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            // Eski rasmini o'chirish
+            if ($usefulResource->image && file_exists(public_path('admin/images/' . $usefulResource->image))) {
+                unlink(public_path('admin/images/' . $usefulResource->image));
+            }
+            
+            $file = $request->file('image');
+            $imageName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('admin/images/'), $imageName);
+            $requestData['image'] = $imageName;
+        }
+
+        $usefulResource->update($requestData);
+        return redirect()->route('admin.usefulResource.index')->with('success', 'Foydali resurs muvaffaqiyatli yangilandi!');
     }
 
     /**

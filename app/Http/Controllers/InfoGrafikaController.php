@@ -52,7 +52,8 @@ class InfoGrafikaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $infoGrafika = InfoGrafika::findOrFail($id);
+        return view('admin.infografika.show', compact('infoGrafika'));
     }
 
     /**
@@ -60,7 +61,8 @@ class InfoGrafikaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $infoGrafika = InfoGrafika::findOrFail($id);
+        return view('admin.infografika.edit', compact('infoGrafika'));
     }
 
     /**
@@ -68,7 +70,29 @@ class InfoGrafikaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $requestData = $request->validate([
+            'title_uz' => 'required|string|max:255',
+            'title_ru' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        ]);
+
+        $infoGrafika = InfoGrafika::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            // Eski rasmini o'chirish
+            if ($infoGrafika->image && file_exists(public_path('admin/images/' . $infoGrafika->image))) {
+                unlink(public_path('admin/images/' . $infoGrafika->image));
+            }
+            
+            $file = $request->file('image');
+            $imageName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('admin/images/'), $imageName);
+            $requestData['image'] = $imageName;
+        }
+
+        $infoGrafika->update($requestData);
+
+        return redirect()->route('admin.infografika.index')->with('success', 'Infografika muvaffaqiyatli yangilandi!');
     }
 
     /**

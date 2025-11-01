@@ -61,7 +61,15 @@ class empCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $requestData = $request->validate([
+            'name_uz' => 'required|string|max:255',
+            'name_ru' => 'required|string|max:255',
+        ]);
+
+        $empCategory = empCategory::findOrFail($id);
+        $empCategory->update($requestData);
+
+        return redirect()->route('admin.empCategory.index')->with('success', 'Xodim kategoriyasi muvaffaqiyatli yangilandi!');
     }
 
     /**

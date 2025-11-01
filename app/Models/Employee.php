@@ -21,4 +21,9 @@ class Employee extends Model
     return $this->belongsTo(Education::class);
 }
 
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class);
+    }
+
 }

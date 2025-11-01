@@ -1,60 +1,34 @@
-
 @extends('layouts.adminLayout')
+@section('title', 'Create Statictik')
+
 @section('content')
+<div class="col-md-8 offset-md-2">
+    <div class="card">
+        <h5 class="card-header">Create Statictik</h5>
+        <div class="card-body">
+            <a href="{{ route('admin.statictik.index') }}" class="btn btn-success mb-3">Back</a>
 
-    <div class="col-md-8 offset-md-2">
-        <form action="{{ route('admin.statictik.store') }}" method="POST">
-            @csrf
+            <form action="{{ route('admin.statictik.store') }}" method="POST">
+                @csrf
 
-            <div class="card">
-                <h5 class="card-header">Create Statictik</h5>
-                <div class="card-body">
-                    <a href="{{ route('admin.statictik.index') }}" class="btn btn-success">Back</a>
-
-                    <div class="mb-4">
-                        <label for="classesCount" class="form-label">classesCount</label>
-                        <input type="integer" class="form-control @error('classesCount') is-invalid @enderror" id="classesCount" placeholder="classesCount..." name="classesCount" value="{{ old('classesCount') }}">
-                        @error('classesCount')
-                        <div class="invalid-feedback" style="color: red;">
-                            {{ $message }}
-                        </div>
+                @foreach(['classesCount','studentsCount','teachersCount','graduatesCount'] as $field)
+                    <div class="mb-3">
+                        <label for="{{ $field }}" class="form-label">{{ ucfirst($field) }}</label>
+                        <input type="number" 
+                               class="form-control @error($field) is-invalid @enderror" 
+                               id="{{ $field }}" 
+                               name="{{ $field }}" 
+                               placeholder="{{ $field }}..." 
+                               value="{{ old($field) }}">
+                        @error($field)
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="mb-4">
-                        <label for="studentsCount" class="form-label">studentsCount</label>
-                        <input type="integer" class="form-control @error('studentsCount') is-invalid @enderror" id="studentsCount" placeholder="studentsCount..." name="studentsCount" value="{{ old('studentsCount') }}">
-                        @error('studentsCount')
-                        <div class="invalid-feedback" style="color: red;">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
+                @endforeach
 
-                    <div class="mb-4">
-                        <label for="teachersCount" class="form-label">teachersCount</label>
-                        <input type="integer" class="form-control @error('teachersCount') is-invalid @enderror" id="teachersCount" placeholder="teachersCount..." name="teachersCount" value="{{ old('teachersCount') }}">
-                        @error('teachersCount')
-                        <div class="invalid-feedback" style="color: red;">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label for="graduatesCount" class="form-label">graduatesCount</label>
-                        <input type="integer" class="form-control @error('graduatesCount') is-invalid @enderror" id="graduatesCount" placeholder="graduatesCount..." name="graduatesCount" value="{{ old('graduatesCount') }}">
-                        @error('graduatesCount')
-                        <div class="invalid-feedback" style="color: red;">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="submit">Save</button>
-                    </div>
-                </div>
-            </div>
-        </form>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
     </div>
-
+</div>
 @endsection

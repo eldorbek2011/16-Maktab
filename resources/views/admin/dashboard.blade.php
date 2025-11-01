@@ -1,226 +1,151 @@
-
 @extends('layouts.adminLayout')
+
 @section('content')
-
 <div class="layout-page">
-          <!-- Navbar -->
 
-          <nav
-            class="layout-navbar container-xxl navbar-detached navbar navbar-expand-xl align-items-center bg-navbar-theme"
-            id="layout-navbar">
-            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
-              <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
-                <i class="icon-base bx bx-menu icon-md"></i>
-              </a>
-            </div>
+  <!-- Navbar -->
+  <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached bg-navbar-theme shadow-sm rounded-bottom-3 px-3 py-2" id="layout-navbar">
+    <div class="d-flex align-items-center w-100 justify-content-between">
 
-            <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-              <!-- Search -->
-              <div class="navbar-nav align-items-center me-auto">
-                <div class="nav-item d-flex align-items-center">
-                  <span class="w-px-22 h-px-22"><i class="icon-base bx bx-search icon-md"></i></span>
-                  <input
-                    type="text"
-                    class="form-control border-0 shadow-none ps-1 ps-sm-2 d-md-block d-none"
-                    placeholder="Search..."
-                    aria-label="Search..." />
+      <!-- Toggle -->
+      <div class="layout-menu-toggle me-3 d-xl-none">
+        <a class="nav-item nav-link px-0 text-primary" href="javascript:void(0)">
+          <i class="bx bx-menu icon-md fs-3"></i>
+        </a>
+      </div>
+
+      <!-- Search -->
+      <div class="navbar-nav align-items-center flex-grow-1">
+        <div class="nav-item d-flex align-items-center bg-light rounded-3 px-3 py-1 shadow-sm w-100" style="max-width: 300px;">
+          <i class="bx bx-search text-secondary me-2 fs-5"></i>
+          <input type="text" class="form-control border-0 shadow-none bg-transparent" placeholder="Qidirish..." aria-label="Qidirish..." />
+        </div>
+      </div>
+
+      <!-- User menu -->
+      <ul class="navbar-nav align-items-center ms-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User" class="rounded-circle me-2" width="40" height="40">
+            <span class="fw-semibold text-dark d-none d-md-inline">Direktor</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end mt-2 shadow-sm">
+            <li class="px-3 py-2">
+              <div class="d-flex align-items-center">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User" class="rounded-circle me-2" width="40" height="40">
+                <div>
+                  <h6 class="mb-0">Shamshod Soliboyev</h6>
+                  <small class="text-muted">Maktab direktori</small>
                 </div>
               </div>
-              <!-- /Search -->
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#"><i class="bx bx-user me-2"></i>Profil</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bx bx-cog me-2"></i>Sozlamalar</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bx bx-book me-2"></i>Dars jadvali</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <form action="{{ route('logout') }}" method="POST">@csrf
+                <button type="submit" class="dropdown-item text-danger"><i class="bx bx-power-off me-2"></i>Chiqish</button>
+              </form>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- /Navbar -->
 
-              <ul class="navbar-nav flex-row align-items-center ms-md-auto">
-                <!-- Place this tag where you want the button to render. -->
-                <li class="nav-item lh-1 me-4">
-                  <a
-                    class="github-button"
-                    href="https://github.com/themeselection/sneat-bootstrap-html-admin-template-free"
-                    data-icon="octicon-star"
-                    data-size="large"
-                    data-show-count="true"
-                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
-                    >Star</a
-                  >
-                </li>
+  <!-- Content -->
+  <div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
 
-                <!-- User -->
-                <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                  <a
-                    class="nav-link dropdown-toggle hide-arrow p-0"
-                    href="javascript:void(0);"
-                    data-bs-toggle="dropdown">
-                    <div class="avatar avatar-online">
-                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                    </div>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <div class="d-flex">
-                          <div class="flex-shrink-0 me-3">
-                            <div class="avatar avatar-online">
-                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                            </div>
-                          </div>
-                          <div class="flex-grow-1">
-                            <h6 class="mb-0">John Doe</h6>
-                            <small class="text-body-secondary">Admin</small>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider my-1"></div>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="icon-base bx bx-user icon-md me-3"></i><span>My Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="icon-base bx bx-cog icon-md me-3"></i><span>Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 icon-base bx bx-credit-card icon-md me-3"></i
-                          ><span class="flex-grow-1 align-middle">Billing Plan</span>
-                          <span class="flex-shrink-0 badge rounded-pill bg-danger">4</span>
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider my-1"></div>
-                    </li>
-                    <li>
-                      <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button class="dropdown-item" >
-                        <i class="icon-base bx bx-power-off icon-md me-3"></i><span>Log Out</span>
-                        </button>
-                       
-                      </form>
-                    </li>
-                  </ul>
-                </li>
-                <!--/ User -->
-              </ul>
-            </div>
-          </nav>
-
-          <!-- / Navbar -->
-
-          <!-- Content wrapper -->
-          <div class="content-wrapper">
-            <!-- Content -->
-            <div class="container-xxl flex-grow-1 container-p-y">
-              <div class="row">
-                <div class="col-xxl-8 mb-6 order-0">
-                  <div class="card">
-                    <div class="d-flex align-items-start row">
-                      <div class="col-sm-7">
-                        <div class="card-body">
-                          <h5 class="card-title text-primary mb-3">Congratulations John! 🎉</h5>
-                          <p class="mb-6">
-                            You have done 72% more sales today.<br />Check your new badge in your profile.
-                          </p>
-
-                          <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
-                        </div>
-                      </div>
-                      <div class="col-sm-5 text-center text-sm-left">
-                        <div class="card-body pb-0 px-0 px-md-6">
-                          <img
-                            src="../assets/img/illustrations/man-with-laptop.png"
-                            height="175"
-                            alt="View Badge User" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xxl-4 col-lg-12 col-md-4 order-1">
-                  <div class="row">
-                    <div class="col-lg-6 col-md-12 col-6 mb-6">
-                      <div class="card h-100">
-                        <div class="card-body">
-                          <div class="card-title d-flex align-items-start justify-content-between mb-4">
-                            <div class="avatar flex-shrink-0">
-                              <img
-                                src="../assets/img/icons/unicons/chart-success.png"
-                                alt="chart success"
-                                class="rounded" />
-                            </div>
-                            <div class="dropdown">
-                              <button
-                                class="btn p-0"
-                                type="button"
-                                id="cardOpt3"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false">
-                                <i class="icon-base bx bx-dots-vertical-rounded text-body-secondary"></i>
-                              </button>
-                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                              </div>
-                            </div>
-                          </div>
-                          <p class="mb-1">Profit</p>
-                          <h4 class="card-title mb-3">$12,628</h4>
-                          <small class="text-success fw-medium"
-                            ><i class="icon-base bx bx-up-arrow-alt"></i> +72.80%</small
-                          >
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-6 mb-6">
-                      <div class="card h-100">
-                        <div class="card-body">
-                          <div class="card-title d-flex align-items-start justify-content-between mb-4">
-                            <div class="avatar flex-shrink-0">
-                              <img
-                                src="../assets/img/icons/unicons/wallet-info.png"
-                                alt="wallet info"
-                                class="rounded" />
-                            </div>
-                            <div class="dropdown">
-                              <button
-                                class="btn p-0"
-                                type="button"
-                                id="cardOpt6"
-                                data-bs-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false">
-                                <i class="icon-base bx bx-dots-vertical-rounded text-body-secondary"></i>
-                              </button>
-                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                              </div>
-                            </div>
-                          </div>
-                          <p class="mb-1">Sales</p>
-                          <h4 class="card-title mb-3">$4,679</h4>
-                          <small class="text-success fw-medium"
-                            ><i class="icon-base bx bx-up-arrow-alt"></i> +28.42%</small
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Total Revenue -->
-               
-            <!-- / Content -->
-
-            <!-- Footer -->
-           
-            <!-- / Footer -->
-
-           
-          <!-- Content wrapper -->
+      <!-- Welcome Card -->
+      <div class="card border-0 shadow-lg mb-5">
+        <div class="row g-0 align-items-center">
+          <div class="col-md-7 p-4">
+            <h4 class="text-primary fw-bold mb-2">🏫 16-MAKTABGA XUSH KELIBSIZ!</h4>
+            <p class="text-muted mb-4">
+              Bugun maktabimizda <strong>yangi o‘quv yili</strong> muvaffaqiyatli boshlandi. 
+              O‘quvchilarimiz bilim, sport va ijod sohalarida faol ishtirok etmoqdalar.
+            </p>
+            <a href="#" class="btn btn-primary btn-sm px-4">Batafsil ma’lumot</a>
+          </div>
+          <div class="col-md-5 text-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/5850/5850276.png" class="img-fluid" alt="School Image" style="max-height: 180px;">
+          </div>
         </div>
-        @endsection
+      </div>
+
+      <!-- Small Stat Cards -->
+      <div class="row g-4">
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100 hover-shadow">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png" width="36" alt="Students">
+                <i class="bx bx-dots-vertical-rounded text-muted"></i>
+              </div>
+              <p class="text-muted mb-1">O‘quvchilar</p>
+              <h4 class="fw-semibold">860 nafar</h4>
+              <span class="text-success small"><i class="bx bx-up-arrow-alt"></i> +12 yangi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100 hover-shadow">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" width="36" alt="Teachers">
+                <i class="bx bx-dots-vertical-rounded text-muted"></i>
+              </div>
+              <p class="text-muted mb-1">O‘qituvchilar</p>
+              <h4 class="fw-semibold">48 nafar</h4>
+              <span class="text-success small"><i class="bx bx-up-arrow-alt"></i> +2 yangi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100 hover-shadow">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <img src="https://cdn-icons-png.flaticon.com/512/201/201818.png" width="36" alt="Subjects">
+                <i class="bx bx-dots-vertical-rounded text-muted"></i>
+              </div>
+              <p class="text-muted mb-1">Fanlar</p>
+              <h4 class="fw-semibold">14 ta</h4>
+              <span class="text-info small"><i class="bx bx-book-open"></i> yangilangan dastur</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card border-0 shadow-sm h-100 hover-shadow">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" width="36" alt="Events">
+                <i class="bx bx-dots-vertical-rounded text-muted"></i>
+              </div>
+              <p class="text-muted mb-1">Tadbirlar</p>
+              <h4 class="fw-semibold">6 ta</h4>
+              <span class="text-warning small"><i class="bx bx-calendar-event"></i> yaqin tadbirlar</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hover-shadow:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+  }
+</style>
+@endsection

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title_ru');
             $table->string('body_uz');
             $table->string('body_ru');
+            $table->string('url');
             $table->timestamps();
         });
     }

@@ -43,7 +43,8 @@ class LessonController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $lesson = Lesson::findOrFail($id);
+        return view('admin.lesson.show', compact('lesson'));
     }
 
     /**
@@ -51,7 +52,8 @@ class LessonController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $lesson = Lesson::findOrFail($id);
+        return view('admin.lesson.edit', compact('lesson'));
     }
 
     /**
@@ -59,7 +61,15 @@ class LessonController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $requestData = $request->validate([
+            'name_uz' => 'required|string|max:255',
+            'name_ru' => 'required|string|max:255',
+        ]);
+
+        $lesson = Lesson::findOrFail($id);
+        $lesson->update($requestData);
+
+        return redirect()->route('admin.lesson.index')->with('success', 'Dars muvaffaqiyatli yangilandi!');
     }
 
     /**
