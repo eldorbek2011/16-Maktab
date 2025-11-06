@@ -1,12 +1,33 @@
 @extends('admin.site')
 @section('content')
 <style>
+    .leaderInfo {
+        display: flex;
+        align-items: flex-start;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+    .leaderInfo .photo .frame {
+        display: inline-block;
+        border: 12px solid #5a4fe6;
+        padding: 12px;
+        box-shadow: 0 10px 30px rgba(42,63,204,0.15);
+        border-radius: 6px;
+    }
+    .leaderInfo .photo img {
+        width: 360px;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
     .leaderInfo .description .staffTitle {
-        font-size: 32px;
+        font-size: 56px;
         margin-bottom: 20px;
         text-transform: uppercase;
         font-weight: 100;
         line-height: 1.2;
+        letter-spacing: 1px;
     }
     .leaderInfo .description .staffTitle div {
         display: block;
@@ -17,12 +38,25 @@
         background: transparent;
         color: #000;
         padding: 0;
-        margin: 20px 0;
+        margin: 20px 0 0;
         font-size: 25px;
         font-weight: normal;
-        border-bottom: 2px solid #2a3fcc;
         display: inline-block;
         padding-bottom: 10px;
+        text-transform: capitalize;
+    }
+    .leaderInfo .description .role-underline{
+        width: 180px;
+        height: 4px;
+        background:#2a3fcc;
+        margin-top: 10px;
+        border-radius: 2px;
+    }
+    @media (max-width: 576px){
+        .leaderInfo{ display:block; }
+        .leaderInfo .photo{ text-align:center; margin-bottom:20px; }
+        .leaderInfo .photo img{ width:100%; }
+        .leaderInfo .description .staffTitle{ font-size:34px; }
     }
 </style>
 
@@ -55,7 +89,9 @@
 
                     <div class="leaderInfo">
                         <div class="photo">
-                            <img alt="image" src="/admin/images/{{ $teacher->image }}">
+                            <div class="frame">
+                                <img alt="image" src="/admin/images/{{ $teacher->image }}">
+                            </div>
                         </div>
 
                         <div class="description">
@@ -73,6 +109,7 @@
                             </h1>
 
                             <h2>{{ $teacher->position->{'name_' . \App::getLocale()} ?? '' }}</h2>
+                            <div class="role-underline"></div>
 
                             <div class="contactInfo">
                                 @if($teacher->work_time)

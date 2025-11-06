@@ -151,14 +151,20 @@
                                                 <li>
                                                     <a href="{{ route('education') }}">{{ __("message.1smena") }}</a>
                                                 </li>
+                                                <hr>
                                                 <li>
                                                     <a href="{{ route('education') }}">{{ __("message.2smena") }}</a>
                                                 </li>
+                                                <hr>
                                                 <li>
                                                     <a href="{{ route('education') }}">{{ __("message.togaraklar") }}</a>
                                                 </li>
-
                                                 <hr>
+                                                <li>
+                                                    <a href="{{ route('education') }}">{{ __("message.sport") }}</a>
+                                                </li>
+
+
 
                                             </ul>
                                         </li>

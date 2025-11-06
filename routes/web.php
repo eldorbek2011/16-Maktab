@@ -92,6 +92,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::resource('usefulResource', \App\Http\Controllers\UserfulController::class);
     Route::resource('HomePageImageTag', \App\Http\Controllers\HomePageImageTagController::class);
     Route::resource('categorychildren', \App\Http\Controllers\ChildrenCategoryController::class);
+    Route::resource('lessons', \App\Http\Controllers\LessonController::class);
 
 });
 

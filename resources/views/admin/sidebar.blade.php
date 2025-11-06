@@ -76,6 +76,11 @@
                 </a>
             </li>
             <li class="menu-item">
+                <a href="{{ route('admin.lessons.index') }}" class="menu-link d-flex align-items-center mb-1 px-3 py-2 rounded">
+                    <i class="bx bx-group me-2"></i> Fanlar
+                </a>
+            </li>
+            <li class="menu-item">
                 <a href="{{ route('admin.schedule.index') }}" class="menu-link d-flex align-items-center mb-1 px-3 py-2 rounded">
                     <i class="bx bx-calendar me-2"></i> Dars Jadvali
                 </a>

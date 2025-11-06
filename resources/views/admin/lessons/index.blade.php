@@ -34,7 +34,7 @@
                 {{-- Header --}}
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0">Lessons</h4>
-                    <a href="{{ route('admin.lesson.create') }}" class="btn btn-primary">+ Create Lesson</a>
+                    <a href="{{ route('admin.lessons.create') }}" class="btn btn-primary">+ Create Lesson</a>
                 </div>
 
                 {{-- Lessons Table --}}
@@ -57,9 +57,9 @@
                                         <td>{{ $lesson->name_ru }}</td>
                                         <td class="text-center">
                                             <div class="d-flex justify-content-center gap-2">
-                                                <a href="{{ route('admin.lesson.show', $lesson->id) }}" class="btn btn-success btn-sm">Show</a>
-                                                <a href="{{ route('admin.lesson.edit', $lesson->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                                <form action="{{ route('admin.lesson.destroy', $lesson->id) }}" method="POST" onsubmit="return confirm('Rostdan ham o‘chirasizmi?');">
+                                                <a href="{{ route('admin.lessons.show', $lesson->id) }}" class="btn btn-success btn-sm">Show</a>
+                                                <a href="{{ route('admin.lessons.edit', $lesson->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                                <form action="{{ route('admin.lessons.destroy', $lesson->id) }}" method="POST" onsubmit="return confirm('Rostdan ham o‘chirasizmi?');">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>

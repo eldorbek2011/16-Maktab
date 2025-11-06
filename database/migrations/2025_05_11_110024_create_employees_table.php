@@ -28,6 +28,11 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
+    public function lessons()
+    {
+        return $this->hasMany(\App\Models\Lesson::class, 'employee_id');
+    }
+
     public function down(): void
     {
         Schema::dropIfExists('employees');

@@ -17,7 +17,7 @@
                 <div class="card shadow-sm">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Fan yaratish</h5>
-                        <a href="{{ route('admin.lesson.index') }}" class="btn btn-success btn-sm">Orqaga</a>
+                        <a href="{{ route('admin.lessons.index') }}" class="btn btn-success btn-sm">Orqaga</a>
                     </div>
 
                     <div class="card-body">
@@ -32,7 +32,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('admin.lesson.store') }}" method="POST">
+                        <form action="{{ route('admin.lessons.store') }}" method="POST">
                             @csrf
 
                             {{-- Nomi (UZ) --}}
@@ -56,7 +56,7 @@
                             {{-- Tugmalar --}}
                             <div class="mt-4">
                                 <button type="submit" class="btn btn-primary">💾 Saqlash</button>
-                                <a href="{{ route('admin.lesson.index') }}" class="btn btn-secondary">Orqaga</a>
+                                <a href="{{ route('admin.lessons.index') }}" class="btn btn-secondary">Orqaga</a>
                             </div>
                         </form>
                     </div>

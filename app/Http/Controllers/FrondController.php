@@ -14,6 +14,7 @@ use App\Models\Schudeli;
 use \App\Models\HomePageImageTag;
 use \App\Models\SmenaType;
 use App\Models\Statictik;
+
 use App\Models\UsefulResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -295,7 +296,7 @@ class FrondController extends Controller
 
     public function educationDetail($id)
     {
-        $schedule = Schudeli::find($id);
+        $schedule = Schudeli::with('classModel')->find($id);
 
         if (!$schedule) {
             abort(404);
@@ -304,7 +305,13 @@ class FrondController extends Controller
         $categories = Category::all();
         $categoryTops = CategoryTopp::all();
 
-        return view('frond.educationDetail', compact('schedule', 'categories', 'categoryTops'));
+        // Bir sahifada ko'rsatish uchun tegishli jadval yozuvlari (masalan, shu smenaga tegishli PDFlar)
+        $schudeli = Schudeli::with('classModel')
+            ->where('smena_id', $schedule->smena_id)
+            ->whereNotNull('pdf_file')
+            ->get();
+
+        return view('frond.educationDetail', compact('schedule', 'categories', 'categoryTops', 'schudeli'));
     }
 
 

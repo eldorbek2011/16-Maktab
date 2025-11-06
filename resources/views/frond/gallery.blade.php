@@ -15,24 +15,26 @@
             </div>
 <main>
     <section>
-        <div class="schoolGallery">
+        <div class="infografika">
             <div class="container">
-                <h1 class="gallery_title">{{__('message.Maktab Galereyasi')}}</h1>
-                <div class="row">
+                <div class="infografika_content">
                     @foreach($gallery as $galler)
-                    <div class="col-6">
-                        <img src="admin/images/{{$galler->image}}" alt="Img" width="500px" height="300px" style="border: none; box-shadow: 0 12px 12px 0 rgb(0, 0, 0, 0.5)">
-                        <h4>
-                            {{ $galler->title_uz }}
-
-                        </h4>
-
-                    </div>
+                        <div class="item">
+                            <a href="{{ asset('admin/images/' . $galler->image) }}">
+                                <div class="imageBox">
+                                    <img src="{{ asset('admin/images/' . $galler->image) }}">
+                                </div>
+                                <div class="descriptionBox">
+                                    <h1>{{ $galler->title_uz }}</h1>
+                                    <span class="news__date basic-flex">{{ $galler->created_at->format('H:i') }} / {{ $galler     ->created_at->format('d.m.Y') }}</span>
+                                </div>
+                            </a>
+                        </div>
                     @endforeach
-
                 </div>
             </div>
         </div>
+
     </section>
 </main>
 @endsection

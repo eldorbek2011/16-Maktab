@@ -21,9 +21,10 @@ class Employee extends Model
     return $this->belongsTo(Education::class);
 }
 
-    public function lesson()
+    public function lessons()
     {
-        return $this->belongsTo(Lesson::class);
+        return $this->hasMany(\App\Models\Lesson::class, 'employee_id');
     }
+
 
 }

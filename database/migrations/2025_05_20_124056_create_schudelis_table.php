@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('schudelis', function (Blueprint $table) {
             $table->id();
             $table->integer('smena_id');
-            $table->integer('lesson_id');
+            $table->unsignedBigInteger('lesson_id');
+
             $table->string('week_day');
             $table->string('room');
             $table->timestamps();

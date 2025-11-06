@@ -88,6 +88,7 @@
                                         <td>{{ $employee->name_uz }}</td>
                                         <td>{{ $employee->name_ru }}</td>
                                         <td>{{ $employee->position->name_uz ?? '—' }}</td>
+
                                         <td>{{ $employee->category->name_uz ?? '—' }}</td>
                                         <td>
                                             <img src="{{ asset('admin/images/' . $employee->image) }}" alt="employee">

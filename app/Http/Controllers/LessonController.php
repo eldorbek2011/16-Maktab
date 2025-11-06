@@ -13,7 +13,7 @@ class LessonController extends Controller
     public function index()
     {
         $lessons =  Lesson::all();
-        return view('admin.lesson.index',compact('lessons'));
+        return view('admin.lessons.index',compact('lessons'));
     }
 
     /**
@@ -22,7 +22,7 @@ class LessonController extends Controller
     public function create()
     {
 
-        return view('admin.lesson.create');
+        return view('admin.lessons.create');
     }
 
     /**
@@ -35,7 +35,7 @@ class LessonController extends Controller
             'name_ru' =>  'required|max:255',
         ]);
         Lesson::create($requestData);
-        return redirect()->route('admin.lesson.index');
+        return redirect()->route('admin.lessons.index');
     }
 
     /**
@@ -43,8 +43,8 @@ class LessonController extends Controller
      */
     public function show(string $id)
     {
-        $lesson = Lesson::findOrFail($id);
-        return view('admin.lesson.show', compact('lesson'));
+        $lessons = Lesson::findOrFail($id);
+        return view('admin.lessons.show', compact('lessons'));
     }
 
     /**
@@ -52,8 +52,8 @@ class LessonController extends Controller
      */
     public function edit(string $id)
     {
-        $lesson = Lesson::findOrFail($id);
-        return view('admin.lesson.edit', compact('lesson'));
+        $lessons = Lesson::findOrFail($id);
+        return view('admin.lessons.edit', compact('lessons'));
     }
 
     /**
@@ -66,10 +66,10 @@ class LessonController extends Controller
             'name_ru' => 'required|string|max:255',
         ]);
 
-        $lesson = Lesson::findOrFail($id);
-        $lesson->update($requestData);
+        $lessons = Lesson::findOrFail($id);
+        $lessons->update($requestData);
 
-        return redirect()->route('admin.lesson.index')->with('success', 'Dars muvaffaqiyatli yangilandi!');
+        return redirect()->route('admin.lessons.index')->with('success', 'Dars muvaffaqiyatli yangilandi!');
     }
 
     /**
@@ -78,6 +78,6 @@ class LessonController extends Controller
     public function destroy(string $id)
     {
         Lesson::destroy($id);
-        return redirect()->route('admin.lesson.index');
+        return redirect()->route('admin.lessons.index');
     }
 }

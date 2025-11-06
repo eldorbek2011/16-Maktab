@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\empCategory;
 use App\Models\Lesson;
 use App\Models\Schudeli;
 use App\Models\SmenaType;
@@ -16,11 +15,11 @@ class SchudeliController extends Controller
      */
     public function index()
     {
-        // Smena va Class bilan birga olish (Eager Loading)
-        $schudeli = Schudeli::with('smena', 'classModel')->get();
-
+        // smena, class va lessons bilan birga olish
+        $schudeli = Schudeli::with('smena', 'classModel', 'lessons')->get();
         return view('admin.schudeli.index', compact('schudeli'));
     }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -28,7 +27,9 @@ class SchudeliController extends Controller
     {
         $smenatype = SmenaType::all();
         $classes = ClassModel::all();
-        return view('admin.schudeli.create', compact('smenatype', 'classes'));
+        $lessons = Lesson::all(); // 🔥 qo‘shildi!
+
+        return view('admin.schudeli.create', compact('smenatype', 'classes', 'lessons'));
     }
 
     /**
@@ -39,8 +40,7 @@ class SchudeliController extends Controller
         $requestData = $request->validate([
             'smena_id' => 'required|exists:smena_types,id',
             'class_id' => 'required|exists:classes,id',
-            'room' => 'nullable|string|max:255',
-            'time' => 'nullable|string|max:255',
+            'lesson_id' => 'nullable|exists:lessons,id',
             'pdf_file' => 'nullable|mimes:pdf|max:10240',
         ]);
 
@@ -51,8 +51,18 @@ class SchudeliController extends Controller
             $requestData['pdf_file'] = $pdfName;
         }
 
+        // DBda NOT NULL ustunlari uchun sukut qiymatlar
+        $requestData += [
+            'week_day' => '',
+            'room' => '',
+            'time' => '00:00',
+            'image' => '',
+        ];
+
         Schudeli::create($requestData);
-        return redirect()->route('admin.schedule.index')->with('success', 'Dars jadvali muvaffaqiyatli yaratildi!');
+
+        return redirect()->route('admin.schedule.index')
+            ->with('success', 'Dars jadvali muvaffaqiyatli yaratildi!');
     }
 
     /**
@@ -60,7 +70,7 @@ class SchudeliController extends Controller
      */
     public function show(string $id)
     {
-        $schedule = Schudeli::with('smena', 'classModel')->findOrFail($id);
+        $schedule = Schudeli::with('smena', 'classModel', 'lessons')->findOrFail($id);
         return view('admin.schudeli.show', compact('schedule'));
     }
 
@@ -72,8 +82,9 @@ class SchudeliController extends Controller
         $schedule = Schudeli::findOrFail($id);
         $smenatype = SmenaType::all();
         $classes = ClassModel::all();
+        $lessons = Lesson::all();
 
-        return view('admin.schudeli.edit', compact('schedule', 'smenatype', 'classes'));
+        return view('admin.schudeli.edit', compact('schedule', 'smenatype', 'classes', 'lessons'));
     }
 
     /**
@@ -84,19 +95,17 @@ class SchudeliController extends Controller
         $schedule = Schudeli::findOrFail($id);
 
         $requestData = $request->validate([
-            'smena_id' => 'required|exists:smena_types,id',
-            'class_id' => 'required|exists:classes,id',
-            'room' => 'nullable|string|max:255',
-            'time' => 'nullable|string|max:255',
+            'smena_id' => 'nullable|exists:smena_types,id',
+            'class_id' => 'nullable|exists:classes,id',
             'pdf_file' => 'nullable|mimes:pdf|max:10240',
         ]);
 
         if ($request->hasFile('pdf_file')) {
-            // Eski PDF faylni o'chirish
+            // eski faylni o‘chirish
             if ($schedule->pdf_file && file_exists(public_path('admin/pdfs/' . $schedule->pdf_file))) {
                 unlink(public_path('admin/pdfs/' . $schedule->pdf_file));
             }
-            
+
             $file = $request->file('pdf_file');
             $pdfName = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('admin/pdfs/'), $pdfName);
@@ -105,7 +114,8 @@ class SchudeliController extends Controller
 
         $schedule->update($requestData);
 
-        return redirect()->route('admin.schedule.index')->with('success', 'Dars jadvali muvaffaqiyatli yangilandi!');
+        return redirect()->route('admin.schedule.index')
+            ->with('success', 'Dars jadvali muvaffaqiyatli yangilandi!');
     }
 
     /**
@@ -114,13 +124,15 @@ class SchudeliController extends Controller
     public function destroy(string $id)
     {
         $schedule = Schudeli::findOrFail($id);
-        
-        // PDF faylni o'chirish
+
+        // PDF faylni o‘chirish
         if ($schedule->pdf_file && file_exists(public_path('admin/pdfs/' . $schedule->pdf_file))) {
             unlink(public_path('admin/pdfs/' . $schedule->pdf_file));
         }
-        
+
         $schedule->delete();
-        return redirect()->route('admin.schedule.index')->with('success', 'Dars jadvali muvaffaqiyatli o\'chirildi!');
+
+        return redirect()->route('admin.schedule.index')
+            ->with('success', 'Dars jadvali muvaffaqiyatli o\'chirildi!');
     }
 }

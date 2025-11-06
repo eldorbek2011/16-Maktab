@@ -33,6 +33,16 @@
                         @endforeach
                     </select>
                 </div>
+                {{-- Dars (Lesson) */}}
+                <div class="mb-3">
+                    <label for="lesson_id" class="form-label fw-bold">Dars (fan)</label>
+                    <select name="lesson_id" id="lesson_id" class="form-control" required>
+                        <option value="" disabled selected>— Darsni tanlang —</option>
+                        @foreach($lessons as $lessons)
+                            <option value="{{ $lessons->id }}">{{ $lessons['name_'. \App::getLocale()] }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
                 {{-- Sinf --}}
                 <div class="mb-3">
@@ -45,17 +55,9 @@
                     </select>
                 </div>
 
-                {{-- Xona --}}
-                <div class="mb-3">
-                    <label for="room" class="form-label fw-bold">Xona</label>
-                    <input type="text" name="room" id="room" class="form-control">
-                </div>
+                {{-- Haftaning kuni va Xona — talab qilinmaydi */}}
 
-                {{-- Vaqt --}}
-                <div class="mb-3">
-                    <label for="time" class="form-label fw-bold">Vaqt</label>
-                    <input type="time" name="time" id="time" class="form-control">
-                </div>
+                {{-- Vaqt — talab qilinmaydi */}}
 
                 {{-- PDF fayl --}}
                 <div class="mb-3">

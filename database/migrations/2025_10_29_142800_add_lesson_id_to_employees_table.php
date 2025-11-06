@@ -8,23 +8,23 @@ return new class extends Migration
 {
     public function up(): void
     {
-        if (!Schema::hasColumn('employees', 'lesson_id')) {
-            Schema::table('employees', function (Blueprint $table) {
-                $table->unsignedBigInteger('lesson_id')->nullable()->after('position_id');
-                $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('set null');
+        if (!Schema::hasColumn('lessons', 'employee_id')) {
+            Schema::table('lessons', function (Blueprint $table) {
+                $table->foreignId('employee_id')
+                    ->nullable()
+                    ->constrained('employees')
+                    ->onDelete('set null');
             });
         }
     }
 
     public function down(): void
     {
-        if (Schema::hasColumn('employees', 'lesson_id')) {
-            Schema::table('employees', function (Blueprint $table) {
-                $table->dropForeign(['lesson_id']);
-                $table->dropColumn('lesson_id');
+        if (Schema::hasColumn('lessons', 'employee_id')) {
+            Schema::table('lessons', function (Blueprint $table) {
+                $table->dropForeign(['employee_id']);
+                $table->dropColumn('employee_id');
             });
         }
     }
 };
-
-

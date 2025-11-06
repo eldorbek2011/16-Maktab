@@ -66,7 +66,7 @@
           <div class="col-md-7 p-4">
             <h4 class="text-primary fw-bold mb-2">🏫 16-MAKTABGA XUSH KELIBSIZ!</h4>
             <p class="text-muted mb-4">
-              Bugun maktabimizda <strong>yangi o‘quv yili</strong> muvaffaqiyatli boshlandi. 
+              Bugun maktabimizda <strong>yangi o‘quv yili</strong> muvaffaqiyatli boshlandi.
               O‘quvchilarimiz bilim, sport va ijod sohalarida faol ishtirok etmoqdalar.
             </p>
             <a href="#" class="btn btn-primary btn-sm px-4">Batafsil ma’lumot</a>
@@ -76,66 +76,39 @@
           </div>
         </div>
       </div>
-
-      <!-- Small Stat Cards -->
-      <div class="row g-4">
-
-        <div class="col-md-6 col-lg-3">
-          <div class="card border-0 shadow-sm h-100 hover-shadow">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start mb-3">
-                <img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png" width="36" alt="Students">
-                <i class="bx bx-dots-vertical-rounded text-muted"></i>
-              </div>
-              <p class="text-muted mb-1">O‘quvchilar</p>
-              <h4 class="fw-semibold">860 nafar</h4>
-              <span class="text-success small"><i class="bx bx-up-arrow-alt"></i> +12 yangi</span>
+        @if(isset($statictik) && count($statictik))
+            <div class="row">
+                <h1 class="text-center text-uppercase mt-5 title">{{ __('message.Maktab Haqida Qisqacha') }}</h1>
+                @foreach($statictik as $stat)
+                    <div class="col-lg-3 col-md-6">
+                        <div class="school_info" data-tilt data-tilt-scale="1.1">
+                            <h2>{{ $stat->classesCount }}</h2>
+                            <p>{{ __('message.Sinflar Soni') }}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="school_info" data-tilt data-tilt-scale="1.1">
+                            <h2>{{ $stat->studentsCount }}</h2>
+                            <p>{{ __('message.O`quvchilar Soni') }}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="school_info" data-tilt data-tilt-scale="1.1">
+                            <h2>{{ $stat->teachersCount }}</h2>
+                            <p>{{ __('message.O`qituvchilar Soni') }}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="school_info" data-tilt data-tilt-scale="1.1">
+                            <h2>{{ $stat->graduatesCount }}</h2>
+                            <p>{{ __('message.Bituruvchilar Soni') }}</p>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-          <div class="card border-0 shadow-sm h-100 hover-shadow">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start mb-3">
-                <img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" width="36" alt="Teachers">
-                <i class="bx bx-dots-vertical-rounded text-muted"></i>
-              </div>
-              <p class="text-muted mb-1">O‘qituvchilar</p>
-              <h4 class="fw-semibold">48 nafar</h4>
-              <span class="text-success small"><i class="bx bx-up-arrow-alt"></i> +2 yangi</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-          <div class="card border-0 shadow-sm h-100 hover-shadow">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start mb-3">
-                <img src="https://cdn-icons-png.flaticon.com/512/201/201818.png" width="36" alt="Subjects">
-                <i class="bx bx-dots-vertical-rounded text-muted"></i>
-              </div>
-              <p class="text-muted mb-1">Fanlar</p>
-              <h4 class="fw-semibold">14 ta</h4>
-              <span class="text-info small"><i class="bx bx-book-open"></i> yangilangan dastur</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-3">
-          <div class="card border-0 shadow-sm h-100 hover-shadow">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-start mb-3">
-                <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" width="36" alt="Events">
-                <i class="bx bx-dots-vertical-rounded text-muted"></i>
-              </div>
-              <p class="text-muted mb-1">Tadbirlar</p>
-              <h4 class="fw-semibold">6 ta</h4>
-              <span class="text-warning small"><i class="bx bx-calendar-event"></i> yaqin tadbirlar</span>
-            </div>
-          </div>
-        </div>
-
+        @else
+            <p>Statistika ma'lumotlari mavjud emas.</p>
+        @endif
       </div>
     </div>
   </div>

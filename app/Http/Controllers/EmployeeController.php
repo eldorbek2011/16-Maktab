@@ -19,7 +19,7 @@ class EmployeeController extends Controller
         $positions = Position::all();
 
         // ✅ Paginatsiya qo‘shildi
-        $employees = Employee::with(['category', 'position', 'lesson'])
+        $employees = Employee::with(['category', 'position', 'lessons'])
             ->orderBy('id', 'desc')
             ->paginate(10);
 
